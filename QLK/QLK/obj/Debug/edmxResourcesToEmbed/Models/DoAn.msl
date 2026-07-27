@@ -1,0 +1,338 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DO_AN_QLKModelStoreContainer" CdmEntityContainer="DO_AN_QLKEntities">
+    <EntitySetMapping Name="bao_cao">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.bao_cao">
+        <MappingFragment StoreEntitySet="bao_cao">
+          <ScalarProperty Name="ma_bao_cao" ColumnName="ma_bao_cao" />
+          <ScalarProperty Name="ma_code_bao_cao" ColumnName="ma_code_bao_cao" />
+          <ScalarProperty Name="ten_bao_cao" ColumnName="ten_bao_cao" />
+          <ScalarProperty Name="loai_bao_cao" ColumnName="loai_bao_cao" />
+          <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="tom_tat_bo_loc" ColumnName="tom_tat_bo_loc" />
+          <ScalarProperty Name="duong_dan_file" ColumnName="duong_dan_file" />
+          <ScalarProperty Name="noi_dung_bao_cao_json" ColumnName="noi_dung_bao_cao_json" />
+          <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chi_tiet_don_hang">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_don_hang">
+        <MappingFragment StoreEntitySet="chi_tiet_don_hang">
+          <ScalarProperty Name="ma_chi_tiet_don" ColumnName="ma_chi_tiet_don" />
+          <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+          <ScalarProperty Name="don_gia" ColumnName="don_gia" />
+          <ScalarProperty Name="gia_von" ColumnName="gia_von" />
+          <ScalarProperty Name="thanh_tien_dong" ColumnName="thanh_tien_dong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chi_tiet_kiem_ke">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_kiem_ke">
+        <MappingFragment StoreEntitySet="chi_tiet_kiem_ke">
+          <ScalarProperty Name="ma_chi_tiet_kiem_ke" ColumnName="ma_chi_tiet_kiem_ke" />
+          <ScalarProperty Name="ma_phieu_kiem_ke" ColumnName="ma_phieu_kiem_ke" />
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="so_luong_he_thong" ColumnName="so_luong_he_thong" />
+          <ScalarProperty Name="so_luong_thuc_te" ColumnName="so_luong_thuc_te" />
+          <ScalarProperty Name="chenh_lech" ColumnName="chenh_lech" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="chi_tiet_phieu_nhap_kho">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_phieu_nhap_kho">
+        <MappingFragment StoreEntitySet="chi_tiet_phieu_nhap_kho">
+          <ScalarProperty Name="ma_chi_tiet_phieu_nhap" ColumnName="ma_chi_tiet_phieu_nhap" />
+          <ScalarProperty Name="ma_phieu_nhap" ColumnName="ma_phieu_nhap" />
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="so_luong_ke_hoach" ColumnName="so_luong_ke_hoach" />
+          <ScalarProperty Name="so_luong_thuc_nhan" ColumnName="so_luong_thuc_nhan" />
+          <ScalarProperty Name="don_gia_nhap" ColumnName="don_gia_nhap" />
+          <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="danh_muc">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.danh_muc">
+        <MappingFragment StoreEntitySet="danh_muc">
+          <ScalarProperty Name="ma_danh_muc" ColumnName="ma_danh_muc" />
+          <ScalarProperty Name="ma_code_danh_muc" ColumnName="ma_code_danh_muc" />
+          <ScalarProperty Name="ten_danh_muc" ColumnName="ten_danh_muc" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="don_hang">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.don_hang">
+        <MappingFragment StoreEntitySet="don_hang">
+          <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+          <ScalarProperty Name="ma_code_don_hang" ColumnName="ma_code_don_hang" />
+          <ScalarProperty Name="ma_khach_hang" ColumnName="ma_khach_hang" />
+          <ScalarProperty Name="ma_nhan_vien" ColumnName="ma_nhan_vien" />
+          <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+          <ScalarProperty Name="ngay_dat_hang" ColumnName="ngay_dat_hang" />
+          <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+          <ScalarProperty Name="trang_thai_thanh_toan" ColumnName="trang_thai_thanh_toan" />
+          <ScalarProperty Name="tong_tien_hang" ColumnName="tong_tien_hang" />
+          <ScalarProperty Name="tien_giam_gia" ColumnName="tien_giam_gia" />
+          <ScalarProperty Name="phi_van_chuyen" ColumnName="phi_van_chuyen" />
+          <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+          <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+          <ScalarProperty Name="ngay_huy" ColumnName="ngay_huy" />
+          <ScalarProperty Name="ly_do_huy" ColumnName="ly_do_huy" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khach_hang">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.khach_hang">
+        <MappingFragment StoreEntitySet="khach_hang">
+          <ScalarProperty Name="ma_khach_hang" ColumnName="ma_khach_hang" />
+          <ScalarProperty Name="ten_khach_hang" ColumnName="ten_khach_hang" />
+          <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+          <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khu_vuc_kho">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.khu_vuc_kho">
+        <MappingFragment StoreEntitySet="khu_vuc_kho">
+          <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+          <ScalarProperty Name="ten_khu_vuc" ColumnName="ten_khu_vuc" />
+          <ScalarProperty Name="loai_khu_vuc" ColumnName="loai_khu_vuc" />
+          <ScalarProperty Name="dien_tich_m2" ColumnName="dien_tich_m2" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="khuyen_mai">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.khuyen_mai">
+        <MappingFragment StoreEntitySet="khuyen_mai">
+          <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+          <ScalarProperty Name="ma_code_khuyen_mai" ColumnName="ma_code_khuyen_mai" />
+          <ScalarProperty Name="ten_khuyen_mai" ColumnName="ten_khuyen_mai" />
+          <ScalarProperty Name="loai_giam_gia" ColumnName="loai_giam_gia" />
+          <ScalarProperty Name="gia_tri_giam" ColumnName="gia_tri_giam" />
+          <ScalarProperty Name="gia_tri_don_toi_thieu" ColumnName="gia_tri_don_toi_thieu" />
+          <ScalarProperty Name="ngay_bat_dau" ColumnName="ngay_bat_dau" />
+          <ScalarProperty Name="ngay_ket_thuc" ColumnName="ngay_ket_thuc" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="lo_hang">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.lo_hang">
+        <MappingFragment StoreEntitySet="lo_hang">
+          <ScalarProperty Name="ma_lo_hang" ColumnName="ma_lo_hang" />
+          <ScalarProperty Name="ma_code_lo_hang" ColumnName="ma_code_lo_hang" />
+          <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+          <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mau_san_pham">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.mau_san_pham">
+        <MappingFragment StoreEntitySet="mau_san_pham">
+          <ScalarProperty Name="ma_mau_san_pham" ColumnName="ma_mau_san_pham" />
+          <ScalarProperty Name="ma_danh_muc" ColumnName="ma_danh_muc" />
+          <ScalarProperty Name="ten_san_pham" ColumnName="ten_san_pham" />
+          <ScalarProperty Name="ma_code_ten_sp" ColumnName="ma_code_ten_sp" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="duong_dan_hinh_anh" ColumnName="duong_dan_hinh_anh" />
+          <ScalarProperty Name="gia_thi_truong" ColumnName="gia_thi_truong" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nguoi_dung">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.nguoi_dung">
+        <MappingFragment StoreEntitySet="nguoi_dung">
+          <ScalarProperty Name="ma_nguoi_dung" ColumnName="ma_nguoi_dung" />
+          <ScalarProperty Name="ten_dang_nhap" ColumnName="ten_dang_nhap" />
+          <ScalarProperty Name="mat_khau_ma_hoa" ColumnName="mat_khau_ma_hoa" />
+          <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+          <ScalarProperty Name="vai_tro" ColumnName="vai_tro" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="nha_cung_cap">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.nha_cung_cap">
+        <MappingFragment StoreEntitySet="nha_cung_cap">
+          <ScalarProperty Name="ma_nha_cung_cap" ColumnName="ma_nha_cung_cap" />
+          <ScalarProperty Name="ma_code_ncc" ColumnName="ma_code_ncc" />
+          <ScalarProperty Name="ten_nha_cung_cap" ColumnName="ten_nha_cung_cap" />
+          <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+          <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+          <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phieu_kiem_ke">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.phieu_kiem_ke">
+        <MappingFragment StoreEntitySet="phieu_kiem_ke">
+          <ScalarProperty Name="ma_phieu_kiem_ke" ColumnName="ma_phieu_kiem_ke" />
+          <ScalarProperty Name="ma_code_kiem_ke" ColumnName="ma_code_kiem_ke" />
+          <ScalarProperty Name="ngay_kiem_ke" ColumnName="ngay_kiem_ke" />
+          <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+          <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+          <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="phieu_nhap_kho">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.phieu_nhap_kho">
+        <MappingFragment StoreEntitySet="phieu_nhap_kho">
+          <ScalarProperty Name="ma_phieu_nhap" ColumnName="ma_phieu_nhap" />
+          <ScalarProperty Name="ma_code_phieu_nhap" ColumnName="ma_code_phieu_nhap" />
+          <ScalarProperty Name="ma_nha_cung_cap" ColumnName="ma_nha_cung_cap" />
+          <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+          <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+          <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+          <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="tong_tien_hang" ColumnName="tong_tien_hang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="san_pham_sku">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.san_pham_sku">
+        <MappingFragment StoreEntitySet="san_pham_sku">
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+          <ScalarProperty Name="ma_mau_san_pham" ColumnName="ma_mau_san_pham" />
+          <ScalarProperty Name="ma_lo_hang" ColumnName="ma_lo_hang" />
+          <ScalarProperty Name="so_thu_tu" ColumnName="so_thu_tu" />
+          <ScalarProperty Name="tom_tat_thuoc_tinh" ColumnName="tom_tat_thuoc_tinh" />
+          <ScalarProperty Name="ma_vach" ColumnName="ma_vach" />
+          <ScalarProperty Name="gia_von" ColumnName="gia_von" />
+          <ScalarProperty Name="gia_niem_yet" ColumnName="gia_niem_yet" />
+          <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+          <ScalarProperty Name="trang_thai_vong_doi" ColumnName="trang_thai_vong_doi" />
+          <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+          <ScalarProperty Name="ma_vi_tri" ColumnName="ma_vi_tri" />
+          <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+          <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="thuoc_tinh">
+      <EntityTypeMapping TypeName="DO_AN_QLKModel.thuoc_tinh">
+        <MappingFragment StoreEntitySet="thuoc_tinh">
+          <ScalarProperty Name="ma_thuoc_tinh" ColumnName="ma_thuoc_tinh" />
+          <ScalarProperty Name="loai_thuoc_tinh" ColumnName="loai_thuoc_tinh" />
+          <ScalarProperty Name="ten_thuoc_tinh" ColumnName="ten_thuoc_tinh" />
+          <ScalarProperty Name="ma_code_thuoc_tinh" ColumnName="ma_code_thuoc_tinh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="thuoc_tinh_sku" TypeName="DO_AN_QLKModel.thuoc_tinh_sku" StoreEntitySet="thuoc_tinh_sku">
+      <EndProperty Name="san_pham_sku">
+        <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+      </EndProperty>
+      <EndProperty Name="thuoc_tinh">
+        <ScalarProperty Name="ma_thuoc_tinh" ColumnName="ma_thuoc_tinh" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DO_AN_QLKModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_ApDungKhuyenMai" FunctionName="DO_AN_QLKModel.Store.sp_ApDungKhuyenMai">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_ApDungKhuyenMai_Result">
+          <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+          <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+          <ScalarProperty Name="tien_giam_gia" ColumnName="tien_giam_gia" />
+          <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_BaoCaoDoanhThuTheoThoiGian" FunctionName="DO_AN_QLKModel.Store.sp_BaoCaoDoanhThuTheoThoiGian">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_BaoCaoDoanhThuTheoThoiGian_Result">
+          <ScalarProperty Name="moc_thoi_gian" ColumnName="moc_thoi_gian" />
+          <ScalarProperty Name="so_luong_don" ColumnName="so_luong_don" />
+          <ScalarProperty Name="doanh_thu" ColumnName="doanh_thu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DO_AN_QLKModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DO_AN_QLKModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DO_AN_QLKModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DO_AN_QLKModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_HoanTatKiemKe" FunctionName="DO_AN_QLKModel.Store.sp_HoanTatKiemKe">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_HoanTatKiemKe_Result">
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+          <ScalarProperty Name="so_luong_he_thong" ColumnName="so_luong_he_thong" />
+          <ScalarProperty Name="so_luong_thuc_te" ColumnName="so_luong_thuc_te" />
+          <ScalarProperty Name="chenh_lech" ColumnName="chenh_lech" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_HoanTatNhapKho" FunctionName="DO_AN_QLKModel.Store.sp_HoanTatNhapKho">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_HoanTatNhapKho_Result">
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+          <ScalarProperty Name="so_luong_thuc_nhan" ColumnName="so_luong_thuc_nhan" />
+          <ScalarProperty Name="ton_kho_sau_khi_nhap" ColumnName="ton_kho_sau_khi_nhap" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_HuyDonHang" FunctionName="DO_AN_QLKModel.Store.sp_HuyDonHang" />
+    <FunctionImportMapping FunctionImportName="sp_QuetSkuNhapKho" FunctionName="DO_AN_QLKModel.Store.sp_QuetSkuNhapKho">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_QuetSkuNhapKho_Result">
+          <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+          <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+          <ScalarProperty Name="ton_kho_sau_khi_them" ColumnName="ton_kho_sau_khi_them" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DO_AN_QLKModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_TaoDonHang" FunctionName="DO_AN_QLKModel.Store.sp_TaoDonHang" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DO_AN_QLKModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

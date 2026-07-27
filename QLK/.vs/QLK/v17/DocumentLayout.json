@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DoAn.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx",
+              "RelativeDocumentMoniker": "QLK\\Models\\DoAn.edmx",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx [Diagram1]",
+              "RelativeToolTip": "QLK\\Models\\DoAn.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2026-07-27T03:38:11.802Z",
+              "EditorCaption": " [Diagram1]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

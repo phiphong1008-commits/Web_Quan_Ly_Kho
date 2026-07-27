@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="aea45f5e8af64f368e05a696960e7e0d" Name="Diagram1" ZoomLevel="124">
+        <EntityTypeShape EntityType="DO_AN_QLKModel.bao_cao" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.chi_tiet_don_hang" Width="1.5" PointX="11.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.chi_tiet_kiem_ke" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.chi_tiet_phieu_nhap_kho" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.danh_muc" Width="1.5" PointX="1.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.don_hang" Width="1.5" PointX="9" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.khach_hang" Width="1.5" PointX="6.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.khu_vuc_kho" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.khuyen_mai" Width="1.5" PointX="6.75" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.lo_hang" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.mau_san_pham" Width="1.5" PointX="3.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.nguoi_dung" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.nha_cung_cap" Width="1.5" PointX="3.75" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.phieu_kiem_ke" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.phieu_nhap_kho" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.san_pham_sku" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.sysdiagrams" Width="1.5" PointX="11.125" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.thuoc_tinh" Width="1.5" PointX="8.25" PointY="13.75" IsExpanded="true" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_baocao_nguoidung" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_cthd_donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_cthd_sku" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctkk_phieu" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctkk_sku" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctpn_phieunhap" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctpn_sku" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_mausp_danhmuc" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_donhang_khachhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_donhang_khuyenmai" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_donhang_nguoidung" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_pkk_khuvuc" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_sku_khuvuc" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_sku_lohang" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_sku_mausp" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_pkk_nguoidung" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_phieunhap_nguoidung" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_phieunhap_ncc" ManuallyRouted="false" />
+        <AssociationConnector Association="DO_AN_QLKModel.thuoc_tinh_sku" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

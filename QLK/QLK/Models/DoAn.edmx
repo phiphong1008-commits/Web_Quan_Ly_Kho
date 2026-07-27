@@ -1,0 +1,1723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DO_AN_QLKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bao_cao">
+          <Key>
+            <PropertyRef Name="ma_bao_cao" />
+          </Key>
+          <Property Name="ma_bao_cao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_bao_cao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ten_bao_cao" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="loai_bao_cao" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nguoi_tao" Type="int" />
+          <Property Name="ngay_tao" Type="datetime2" Precision="7" />
+          <Property Name="tom_tat_bo_loc" Type="nvarchar(max)" />
+          <Property Name="duong_dan_file" Type="varchar" MaxLength="255" />
+          <Property Name="noi_dung_bao_cao_json" Type="nvarchar(max)" />
+          <Property Name="ghi_chu" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="chi_tiet_don_hang">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_don" />
+          </Key>
+          <Property Name="ma_chi_tiet_don" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_don_hang" Type="int" Nullable="false" />
+          <Property Name="ma_sku" Type="int" Nullable="false" />
+          <Property Name="so_luong" Type="int" Nullable="false" />
+          <Property Name="don_gia" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_von" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="thanh_tien_dong" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="chi_tiet_kiem_ke">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_kiem_ke" />
+          </Key>
+          <Property Name="ma_chi_tiet_kiem_ke" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_phieu_kiem_ke" Type="int" Nullable="false" />
+          <Property Name="ma_sku" Type="int" Nullable="false" />
+          <Property Name="so_luong_he_thong" Type="int" Nullable="false" />
+          <Property Name="so_luong_thuc_te" Type="int" Nullable="false" />
+          <Property Name="chenh_lech" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="chi_tiet_phieu_nhap_kho">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_phieu_nhap" />
+          </Key>
+          <Property Name="ma_chi_tiet_phieu_nhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_phieu_nhap" Type="int" Nullable="false" />
+          <Property Name="ma_sku" Type="int" Nullable="false" />
+          <Property Name="so_luong_ke_hoach" Type="int" Nullable="false" />
+          <Property Name="so_luong_thuc_nhan" Type="int" Nullable="false" />
+          <Property Name="don_gia_nhap" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="thanh_tien" Type="decimal" Precision="26" Scale="2" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="danh_muc">
+          <Key>
+            <PropertyRef Name="ma_danh_muc" />
+          </Key>
+          <Property Name="ma_danh_muc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_danh_muc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ten_danh_muc" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+          <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="ma_don_hang" />
+          </Key>
+          <Property Name="ma_don_hang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_don_hang" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ma_khach_hang" Type="int" />
+          <Property Name="ma_nhan_vien" Type="int" />
+          <Property Name="ma_khuyen_mai" Type="int" />
+          <Property Name="ngay_dat_hang" Type="datetime2" Precision="7" />
+          <Property Name="trang_thai" Type="varchar" MaxLength="20" />
+          <Property Name="trang_thai_thanh_toan" Type="varchar" MaxLength="20" />
+          <Property Name="tong_tien_hang" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="tien_giam_gia" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="phi_van_chuyen" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="thanh_tien" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ghi_chu" Type="nvarchar(max)" />
+          <Property Name="ngay_huy" Type="datetime" />
+          <Property Name="ly_do_huy" Type="nvarchar(max)" />
+          <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="ma_khach_hang" />
+          </Key>
+          <Property Name="ma_khach_hang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_khach_hang" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
+          <Property Name="dia_chi" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="khu_vuc_kho">
+          <Key>
+            <PropertyRef Name="ma_khu_vuc" />
+          </Key>
+          <Property Name="ma_khu_vuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_khu_vuc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loai_khu_vuc" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="dien_tich_m2" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+        </EntityType>
+        <EntityType Name="khuyen_mai">
+          <Key>
+            <PropertyRef Name="ma_khuyen_mai" />
+          </Key>
+          <Property Name="ma_khuyen_mai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_khuyen_mai" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ten_khuyen_mai" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="loai_giam_gia" Type="varchar" MaxLength="20" />
+          <Property Name="gia_tri_giam" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_tri_don_toi_thieu" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="ngay_bat_dau" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ngay_ket_thuc" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+          <Property Name="ngay_tao" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="lo_hang">
+          <Key>
+            <PropertyRef Name="ma_lo_hang" />
+          </Key>
+          <Property Name="ma_lo_hang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_lo_hang" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ngay_nhap" Type="date" Nullable="false" />
+          <Property Name="ghi_chu" Type="nvarchar(max)" />
+          <Property Name="ngay_tao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="mau_san_pham">
+          <Key>
+            <PropertyRef Name="ma_mau_san_pham" />
+          </Key>
+          <Property Name="ma_mau_san_pham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_danh_muc" Type="int" Nullable="false" />
+          <Property Name="ten_san_pham" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ma_code_ten_sp" Type="varchar" MaxLength="50" />
+          <Property Name="mo_ta" Type="nvarchar(max)" />
+          <Property Name="duong_dan_hinh_anh" Type="varchar" MaxLength="255" />
+          <Property Name="gia_thi_truong" Type="decimal" Precision="15" Scale="2" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+          <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="nguoi_dung">
+          <Key>
+            <PropertyRef Name="ma_nguoi_dung" />
+          </Key>
+          <Property Name="ma_nguoi_dung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ten_dang_nhap" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mat_khau_ma_hoa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ho_ten" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="vai_tro" Type="varchar" MaxLength="20" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+          <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="nha_cung_cap">
+          <Key>
+            <PropertyRef Name="ma_nha_cung_cap" />
+          </Key>
+          <Property Name="ma_nha_cung_cap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_ncc" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ten_nha_cung_cap" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
+          <Property Name="dia_chi" Type="nvarchar" MaxLength="255" />
+          <Property Name="trang_thai_hoat_dong" Type="bit" />
+          <Property Name="ngay_tao" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="phieu_kiem_ke">
+          <Key>
+            <PropertyRef Name="ma_phieu_kiem_ke" />
+          </Key>
+          <Property Name="ma_phieu_kiem_ke" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_kiem_ke" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ngay_kiem_ke" Type="date" Nullable="false" />
+          <Property Name="ma_khu_vuc" Type="int" />
+          <Property Name="nguoi_tao" Type="int" />
+          <Property Name="trang_thai" Type="varchar" MaxLength="20" />
+          <Property Name="ngay_tao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="phieu_nhap_kho">
+          <Key>
+            <PropertyRef Name="ma_phieu_nhap" />
+          </Key>
+          <Property Name="ma_phieu_nhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_phieu_nhap" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ma_nha_cung_cap" Type="int" />
+          <Property Name="nguoi_tao" Type="int" />
+          <Property Name="ngay_nhap" Type="datetime2" Precision="7" />
+          <Property Name="trang_thai" Type="varchar" MaxLength="20" />
+          <Property Name="ghi_chu" Type="nvarchar(max)" />
+          <Property Name="ngay_tao" Type="datetime2" Precision="7" />
+          <Property Name="tong_tien_hang" Type="decimal" Precision="15" Scale="2" />
+        </EntityType>
+        <EntityType Name="san_pham_sku">
+          <Key>
+            <PropertyRef Name="ma_sku" />
+          </Key>
+          <Property Name="ma_sku" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma_code_sku" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ma_mau_san_pham" Type="int" Nullable="false" />
+          <Property Name="ma_lo_hang" Type="int" Nullable="false" />
+          <Property Name="so_thu_tu" Type="int" Nullable="false" />
+          <Property Name="tom_tat_thuoc_tinh" Type="nvarchar" MaxLength="150" />
+          <Property Name="ma_vach" Type="varchar" MaxLength="50" />
+          <Property Name="gia_von" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_niem_yet" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="so_luong" Type="int" Nullable="false" />
+          <Property Name="trang_thai_vong_doi" Type="varchar" MaxLength="20" />
+          <Property Name="ma_khu_vuc" Type="int" />
+          <Property Name="ma_vi_tri" Type="varchar" MaxLength="50" />
+          <Property Name="ngay_tao" Type="datetime" />
+          <Property Name="ngay_cap_nhat" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="thuoc_tinh">
+          <Key>
+            <PropertyRef Name="ma_thuoc_tinh" />
+          </Key>
+          <Property Name="ma_thuoc_tinh" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loai_thuoc_tinh" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ten_thuoc_tinh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ma_code_thuoc_tinh" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="thuoc_tinh_sku">
+          <Key>
+            <PropertyRef Name="ma_sku" />
+            <PropertyRef Name="ma_thuoc_tinh" />
+          </Key>
+          <Property Name="ma_sku" Type="int" Nullable="false" />
+          <Property Name="ma_thuoc_tinh" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_baocao_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="bao_cao" Type="Self.bao_cao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="bao_cao">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkk_phieu">
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_kiem_ke" Type="Self.chi_tiet_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieu_kiem_ke">
+              <PropertyRef Name="ma_phieu_kiem_ke" />
+            </Principal>
+            <Dependent Role="chi_tiet_kiem_ke">
+              <PropertyRef Name="ma_phieu_kiem_ke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkk_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_kiem_ke" Type="Self.chi_tiet_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_kiem_ke">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctpn_phieunhap">
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_phieu_nhap_kho" Type="Self.chi_tiet_phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieu_nhap_kho">
+              <PropertyRef Name="ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="chi_tiet_phieu_nhap_kho">
+              <PropertyRef Name="ma_phieu_nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctpn_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_phieu_nhap_kho" Type="Self.chi_tiet_phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_phieu_nhap_kho">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_donhang">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="ma_don_hang" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="ma_don_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_khachhang">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_khach_hang" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_khach_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_khuyenmai">
+          <End Role="khuyen_mai" Type="Self.khuyen_mai" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khuyen_mai">
+              <PropertyRef Name="ma_khuyen_mai" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_khuyen_mai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mausp_danhmuc">
+          <End Role="danh_muc" Type="Self.danh_muc" Multiplicity="1" />
+          <End Role="mau_san_pham" Type="Self.mau_san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danh_muc">
+              <PropertyRef Name="ma_danh_muc" />
+            </Principal>
+            <Dependent Role="mau_san_pham">
+              <PropertyRef Name="ma_danh_muc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pkk_khuvuc">
+          <End Role="khu_vuc_kho" Type="Self.khu_vuc_kho" Multiplicity="0..1" />
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khu_vuc_kho">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Principal>
+            <Dependent Role="phieu_kiem_ke">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pkk_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="phieu_kiem_ke">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_ncc">
+          <End Role="nha_cung_cap" Type="Self.nha_cung_cap" Multiplicity="0..1" />
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nha_cung_cap">
+              <PropertyRef Name="ma_nha_cung_cap" />
+            </Principal>
+            <Dependent Role="phieu_nhap_kho">
+              <PropertyRef Name="ma_nha_cung_cap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="phieu_nhap_kho">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_khuvuc">
+          <End Role="khu_vuc_kho" Type="Self.khu_vuc_kho" Multiplicity="0..1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khu_vuc_kho">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_lohang">
+          <End Role="lo_hang" Type="Self.lo_hang" Multiplicity="1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lo_hang">
+              <PropertyRef Name="ma_lo_hang" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_lo_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_mausp">
+          <End Role="mau_san_pham" Type="Self.mau_san_pham" Multiplicity="1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mau_san_pham">
+              <PropertyRef Name="ma_mau_san_pham" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_mau_san_pham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ttsku_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="thuoc_tinh_sku" Type="Self.thuoc_tinh_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="thuoc_tinh_sku">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ttsku_thuoctinh">
+          <End Role="thuoc_tinh" Type="Self.thuoc_tinh" Multiplicity="1" />
+          <End Role="thuoc_tinh_sku" Type="Self.thuoc_tinh_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="thuoc_tinh">
+              <PropertyRef Name="ma_thuoc_tinh" />
+            </Principal>
+            <Dependent Role="thuoc_tinh_sku">
+              <PropertyRef Name="ma_thuoc_tinh" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_ApDungKhuyenMai" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_don_hang" Type="int" Mode="In" />
+          <Parameter Name="ma_code_khuyen_mai" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_BaoCaoDoanhThuTheoThoiGian" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tu_ngay" Type="date" Mode="In" />
+          <Parameter Name="den_ngay" Type="date" Mode="In" />
+          <Parameter Name="nhom_theo" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_HoanTatKiemKe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_phieu_kiem_ke" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_HoanTatNhapKho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_phieu_nhap" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_HuyDonHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_don_hang" Type="int" Mode="In" />
+          <Parameter Name="ly_do_huy" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_QuetSkuNhapKho" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_vach_hoac_sku" Type="varchar" Mode="In" />
+          <Parameter Name="so_luong_them" Type="int" Mode="In" />
+          <Parameter Name="ma_khu_vuc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_TaoDonHang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ma_code_don_hang" Type="varchar" Mode="In" />
+          <Parameter Name="ma_nhan_vien" Type="int" Mode="In" />
+          <Parameter Name="ma_khach_hang" Type="int" Mode="In" />
+          <Parameter Name="ma_khuyen_mai" Type="int" Mode="In" />
+          <Parameter Name="tien_giam_gia" Type="decimal" Mode="In" />
+          <Parameter Name="phi_van_chuyen" Type="decimal" Mode="In" />
+          <Parameter Name="ghi_chu" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DO_AN_QLKModelStoreContainer">
+          <EntitySet Name="bao_cao" EntityType="Self.bao_cao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_don_hang" EntityType="Self.chi_tiet_don_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_kiem_ke" EntityType="Self.chi_tiet_kiem_ke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="chi_tiet_phieu_nhap_kho" EntityType="Self.chi_tiet_phieu_nhap_kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="danh_muc" EntityType="Self.danh_muc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khu_vuc_kho" EntityType="Self.khu_vuc_kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="khuyen_mai" EntityType="Self.khuyen_mai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lo_hang" EntityType="Self.lo_hang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mau_san_pham" EntityType="Self.mau_san_pham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nguoi_dung" EntityType="Self.nguoi_dung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="nha_cung_cap" EntityType="Self.nha_cung_cap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phieu_kiem_ke" EntityType="Self.phieu_kiem_ke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phieu_nhap_kho" EntityType="Self.phieu_nhap_kho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="san_pham_sku" EntityType="Self.san_pham_sku" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thuoc_tinh" EntityType="Self.thuoc_tinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="thuoc_tinh_sku" EntityType="Self.thuoc_tinh_sku" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_baocao_nguoidung" Association="Self.FK_baocao_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="bao_cao" EntitySet="bao_cao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkk_phieu" Association="Self.FK_ctkk_phieu">
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+            <End Role="chi_tiet_kiem_ke" EntitySet="chi_tiet_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkk_sku" Association="Self.FK_ctkk_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_kiem_ke" EntitySet="chi_tiet_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctpn_phieunhap" Association="Self.FK_ctpn_phieunhap">
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+            <End Role="chi_tiet_phieu_nhap_kho" EntitySet="chi_tiet_phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctpn_sku" Association="Self.FK_ctpn_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_phieu_nhap_kho" EntitySet="chi_tiet_phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_donhang" Association="Self.FK_cthd_donhang">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_sku" Association="Self.FK_cthd_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_khachhang" Association="Self.FK_donhang_khachhang">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_khuyenmai" Association="Self.FK_donhang_khuyenmai">
+            <End Role="khuyen_mai" EntitySet="khuyen_mai" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_nguoidung" Association="Self.FK_donhang_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mausp_danhmuc" Association="Self.FK_mausp_danhmuc">
+            <End Role="danh_muc" EntitySet="danh_muc" />
+            <End Role="mau_san_pham" EntitySet="mau_san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pkk_khuvuc" Association="Self.FK_pkk_khuvuc">
+            <End Role="khu_vuc_kho" EntitySet="khu_vuc_kho" />
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pkk_nguoidung" Association="Self.FK_pkk_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_ncc" Association="Self.FK_phieunhap_ncc">
+            <End Role="nha_cung_cap" EntitySet="nha_cung_cap" />
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_nguoidung" Association="Self.FK_phieunhap_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_khuvuc" Association="Self.FK_sku_khuvuc">
+            <End Role="khu_vuc_kho" EntitySet="khu_vuc_kho" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_lohang" Association="Self.FK_sku_lohang">
+            <End Role="lo_hang" EntitySet="lo_hang" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_mausp" Association="Self.FK_sku_mausp">
+            <End Role="mau_san_pham" EntitySet="mau_san_pham" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ttsku_sku" Association="Self.FK_ttsku_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="thuoc_tinh_sku" EntitySet="thuoc_tinh_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ttsku_thuoctinh" Association="Self.FK_ttsku_thuoctinh">
+            <End Role="thuoc_tinh" EntitySet="thuoc_tinh" />
+            <End Role="thuoc_tinh_sku" EntitySet="thuoc_tinh_sku" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DO_AN_QLKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bao_cao">
+          <Key>
+            <PropertyRef Name="ma_bao_cao" />
+          </Key>
+          <Property Name="ma_bao_cao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_bao_cao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ten_bao_cao" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loai_bao_cao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nguoi_tao" Type="Int32" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="7" />
+          <Property Name="tom_tat_bo_loc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="duong_dan_file" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="noi_dung_bao_cao_json" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="nguoi_dung" Relationship="Self.FK_baocao_nguoidung" FromRole="bao_cao" ToRole="nguoi_dung" />
+        </EntityType>
+        <EntityType Name="chi_tiet_don_hang">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_don" />
+          </Key>
+          <Property Name="ma_chi_tiet_don" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_don_hang" Type="Int32" Nullable="false" />
+          <Property Name="ma_sku" Type="Int32" Nullable="false" />
+          <Property Name="so_luong" Type="Int32" Nullable="false" />
+          <Property Name="don_gia" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_von" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="thanh_tien_dong" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK_cthd_donhang" FromRole="chi_tiet_don_hang" ToRole="don_hang" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_cthd_sku" FromRole="chi_tiet_don_hang" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="chi_tiet_kiem_ke">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_kiem_ke" />
+          </Key>
+          <Property Name="ma_chi_tiet_kiem_ke" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_phieu_kiem_ke" Type="Int32" Nullable="false" />
+          <Property Name="ma_sku" Type="Int32" Nullable="false" />
+          <Property Name="so_luong_he_thong" Type="Int32" Nullable="false" />
+          <Property Name="so_luong_thuc_te" Type="Int32" Nullable="false" />
+          <Property Name="chenh_lech" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_ctkk_phieu" FromRole="chi_tiet_kiem_ke" ToRole="phieu_kiem_ke" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_ctkk_sku" FromRole="chi_tiet_kiem_ke" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="chi_tiet_phieu_nhap_kho">
+          <Key>
+            <PropertyRef Name="ma_chi_tiet_phieu_nhap" />
+          </Key>
+          <Property Name="ma_chi_tiet_phieu_nhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_phieu_nhap" Type="Int32" Nullable="false" />
+          <Property Name="ma_sku" Type="Int32" Nullable="false" />
+          <Property Name="so_luong_ke_hoach" Type="Int32" Nullable="false" />
+          <Property Name="so_luong_thuc_nhan" Type="Int32" Nullable="false" />
+          <Property Name="don_gia_nhap" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="thanh_tien" Type="Decimal" Precision="26" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_ctpn_phieunhap" FromRole="chi_tiet_phieu_nhap_kho" ToRole="phieu_nhap_kho" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_ctpn_sku" FromRole="chi_tiet_phieu_nhap_kho" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="danh_muc">
+          <Key>
+            <PropertyRef Name="ma_danh_muc" />
+          </Key>
+          <Property Name="ma_danh_muc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_danh_muc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ten_danh_muc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="mau_san_pham" Relationship="Self.FK_mausp_danhmuc" FromRole="danh_muc" ToRole="mau_san_pham" />
+        </EntityType>
+        <EntityType Name="don_hang">
+          <Key>
+            <PropertyRef Name="ma_don_hang" />
+          </Key>
+          <Property Name="ma_don_hang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_don_hang" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ma_khach_hang" Type="Int32" />
+          <Property Name="ma_nhan_vien" Type="Int32" />
+          <Property Name="ma_khuyen_mai" Type="Int32" />
+          <Property Name="ngay_dat_hang" Type="DateTime" Precision="7" />
+          <Property Name="trang_thai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="trang_thai_thanh_toan" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tong_tien_hang" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="tien_giam_gia" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="phi_van_chuyen" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="thanh_tien" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_huy" Type="DateTime" Precision="3" />
+          <Property Name="ly_do_huy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="chi_tiet_don_hang" Relationship="Self.FK_cthd_donhang" FromRole="don_hang" ToRole="chi_tiet_don_hang" />
+          <NavigationProperty Name="khach_hang" Relationship="Self.FK_donhang_khachhang" FromRole="don_hang" ToRole="khach_hang" />
+          <NavigationProperty Name="khuyen_mai" Relationship="Self.FK_donhang_khuyenmai" FromRole="don_hang" ToRole="khuyen_mai" />
+          <NavigationProperty Name="nguoi_dung" Relationship="Self.FK_donhang_nguoidung" FromRole="don_hang" ToRole="nguoi_dung" />
+        </EntityType>
+        <EntityType Name="khach_hang">
+          <Key>
+            <PropertyRef Name="ma_khach_hang" />
+          </Key>
+          <Property Name="ma_khach_hang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_khach_hang" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dia_chi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK_donhang_khachhang" FromRole="khach_hang" ToRole="don_hang" />
+        </EntityType>
+        <EntityType Name="khu_vuc_kho">
+          <Key>
+            <PropertyRef Name="ma_khu_vuc" />
+          </Key>
+          <Property Name="ma_khu_vuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_khu_vuc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loai_khu_vuc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dien_tich_m2" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_pkk_khuvuc" FromRole="khu_vuc_kho" ToRole="phieu_kiem_ke" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_sku_khuvuc" FromRole="khu_vuc_kho" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="khuyen_mai">
+          <Key>
+            <PropertyRef Name="ma_khuyen_mai" />
+          </Key>
+          <Property Name="ma_khuyen_mai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_khuyen_mai" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ten_khuyen_mai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loai_giam_gia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gia_tri_giam" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_tri_don_toi_thieu" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="ngay_bat_dau" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ngay_ket_thuc" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK_donhang_khuyenmai" FromRole="khuyen_mai" ToRole="don_hang" />
+        </EntityType>
+        <EntityType Name="lo_hang">
+          <Key>
+            <PropertyRef Name="ma_lo_hang" />
+          </Key>
+          <Property Name="ma_lo_hang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_lo_hang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngay_nhap" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_sku_lohang" FromRole="lo_hang" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="mau_san_pham">
+          <Key>
+            <PropertyRef Name="ma_mau_san_pham" />
+          </Key>
+          <Property Name="ma_mau_san_pham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_danh_muc" Type="Int32" Nullable="false" />
+          <Property Name="ten_san_pham" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ma_code_ten_sp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mo_ta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="duong_dan_hinh_anh" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="gia_thi_truong" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="danh_muc" Relationship="Self.FK_mausp_danhmuc" FromRole="mau_san_pham" ToRole="danh_muc" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.FK_sku_mausp" FromRole="mau_san_pham" ToRole="san_pham_sku" />
+        </EntityType>
+        <EntityType Name="nguoi_dung">
+          <Key>
+            <PropertyRef Name="ma_nguoi_dung" />
+          </Key>
+          <Property Name="ma_nguoi_dung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ten_dang_nhap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mat_khau_ma_hoa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ho_ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="vai_tro" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bao_cao" Relationship="Self.FK_baocao_nguoidung" FromRole="nguoi_dung" ToRole="bao_cao" />
+          <NavigationProperty Name="don_hang" Relationship="Self.FK_donhang_nguoidung" FromRole="nguoi_dung" ToRole="don_hang" />
+          <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_pkk_nguoidung" FromRole="nguoi_dung" ToRole="phieu_kiem_ke" />
+          <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_phieunhap_nguoidung" FromRole="nguoi_dung" ToRole="phieu_nhap_kho" />
+        </EntityType>
+        <EntityType Name="nha_cung_cap">
+          <Key>
+            <PropertyRef Name="ma_nha_cung_cap" />
+          </Key>
+          <Property Name="ma_nha_cung_cap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_ncc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ten_nha_cung_cap" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dia_chi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="trang_thai_hoat_dong" Type="Boolean" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_phieunhap_ncc" FromRole="nha_cung_cap" ToRole="phieu_nhap_kho" />
+        </EntityType>
+        <EntityType Name="phieu_kiem_ke">
+          <Key>
+            <PropertyRef Name="ma_phieu_kiem_ke" />
+          </Key>
+          <Property Name="ma_phieu_kiem_ke" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_kiem_ke" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ngay_kiem_ke" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ma_khu_vuc" Type="Int32" />
+          <Property Name="nguoi_tao" Type="Int32" />
+          <Property Name="trang_thai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="chi_tiet_kiem_ke" Relationship="Self.FK_ctkk_phieu" FromRole="phieu_kiem_ke" ToRole="chi_tiet_kiem_ke" />
+          <NavigationProperty Name="khu_vuc_kho" Relationship="Self.FK_pkk_khuvuc" FromRole="phieu_kiem_ke" ToRole="khu_vuc_kho" />
+          <NavigationProperty Name="nguoi_dung" Relationship="Self.FK_pkk_nguoidung" FromRole="phieu_kiem_ke" ToRole="nguoi_dung" />
+        </EntityType>
+        <EntityType Name="phieu_nhap_kho">
+          <Key>
+            <PropertyRef Name="ma_phieu_nhap" />
+          </Key>
+          <Property Name="ma_phieu_nhap" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_phieu_nhap" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ma_nha_cung_cap" Type="Int32" />
+          <Property Name="nguoi_tao" Type="Int32" />
+          <Property Name="ngay_nhap" Type="DateTime" Precision="7" />
+          <Property Name="trang_thai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ghi_chu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="7" />
+          <Property Name="tong_tien_hang" Type="Decimal" Precision="15" Scale="2" />
+          <NavigationProperty Name="chi_tiet_phieu_nhap_kho" Relationship="Self.FK_ctpn_phieunhap" FromRole="phieu_nhap_kho" ToRole="chi_tiet_phieu_nhap_kho" />
+          <NavigationProperty Name="nguoi_dung" Relationship="Self.FK_phieunhap_nguoidung" FromRole="phieu_nhap_kho" ToRole="nguoi_dung" />
+          <NavigationProperty Name="nha_cung_cap" Relationship="Self.FK_phieunhap_ncc" FromRole="phieu_nhap_kho" ToRole="nha_cung_cap" />
+        </EntityType>
+        <EntityType Name="san_pham_sku">
+          <Key>
+            <PropertyRef Name="ma_sku" />
+          </Key>
+          <Property Name="ma_sku" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma_code_sku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ma_mau_san_pham" Type="Int32" Nullable="false" />
+          <Property Name="ma_lo_hang" Type="Int32" Nullable="false" />
+          <Property Name="so_thu_tu" Type="Int32" Nullable="false" />
+          <Property Name="tom_tat_thuoc_tinh" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ma_vach" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gia_von" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="gia_niem_yet" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="so_luong" Type="Int32" Nullable="false" />
+          <Property Name="trang_thai_vong_doi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ma_khu_vuc" Type="Int32" />
+          <Property Name="ma_vi_tri" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ngay_tao" Type="DateTime" Precision="3" />
+          <Property Name="ngay_cap_nhat" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="chi_tiet_don_hang" Relationship="Self.FK_cthd_sku" FromRole="san_pham_sku" ToRole="chi_tiet_don_hang" />
+          <NavigationProperty Name="chi_tiet_kiem_ke" Relationship="Self.FK_ctkk_sku" FromRole="san_pham_sku" ToRole="chi_tiet_kiem_ke" />
+          <NavigationProperty Name="chi_tiet_phieu_nhap_kho" Relationship="Self.FK_ctpn_sku" FromRole="san_pham_sku" ToRole="chi_tiet_phieu_nhap_kho" />
+          <NavigationProperty Name="khu_vuc_kho" Relationship="Self.FK_sku_khuvuc" FromRole="san_pham_sku" ToRole="khu_vuc_kho" />
+          <NavigationProperty Name="lo_hang" Relationship="Self.FK_sku_lohang" FromRole="san_pham_sku" ToRole="lo_hang" />
+          <NavigationProperty Name="mau_san_pham" Relationship="Self.FK_sku_mausp" FromRole="san_pham_sku" ToRole="mau_san_pham" />
+          <NavigationProperty Name="thuoc_tinh" Relationship="Self.thuoc_tinh_sku" FromRole="san_pham_sku" ToRole="thuoc_tinh" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="thuoc_tinh">
+          <Key>
+            <PropertyRef Name="ma_thuoc_tinh" />
+          </Key>
+          <Property Name="ma_thuoc_tinh" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loai_thuoc_tinh" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ten_thuoc_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ma_code_thuoc_tinh" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="san_pham_sku" Relationship="Self.thuoc_tinh_sku" FromRole="thuoc_tinh" ToRole="san_pham_sku" />
+        </EntityType>
+        <Association Name="FK_baocao_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="bao_cao" Type="Self.bao_cao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="bao_cao">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_donhang">
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="don_hang">
+              <PropertyRef Name="ma_don_hang" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="ma_don_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cthd_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_don_hang" Type="Self.chi_tiet_don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_don_hang">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkk_phieu">
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_kiem_ke" Type="Self.chi_tiet_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieu_kiem_ke">
+              <PropertyRef Name="ma_phieu_kiem_ke" />
+            </Principal>
+            <Dependent Role="chi_tiet_kiem_ke">
+              <PropertyRef Name="ma_phieu_kiem_ke" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctkk_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_kiem_ke" Type="Self.chi_tiet_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_kiem_ke">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctpn_phieunhap">
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="chi_tiet_phieu_nhap_kho" Type="Self.chi_tiet_phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="phieu_nhap_kho">
+              <PropertyRef Name="ma_phieu_nhap" />
+            </Principal>
+            <Dependent Role="chi_tiet_phieu_nhap_kho">
+              <PropertyRef Name="ma_phieu_nhap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ctpn_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="1" />
+          <End Role="chi_tiet_phieu_nhap_kho" Type="Self.chi_tiet_phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="san_pham_sku">
+              <PropertyRef Name="ma_sku" />
+            </Principal>
+            <Dependent Role="chi_tiet_phieu_nhap_kho">
+              <PropertyRef Name="ma_sku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mausp_danhmuc">
+          <End Role="danh_muc" Type="Self.danh_muc" Multiplicity="1" />
+          <End Role="mau_san_pham" Type="Self.mau_san_pham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="danh_muc">
+              <PropertyRef Name="ma_danh_muc" />
+            </Principal>
+            <Dependent Role="mau_san_pham">
+              <PropertyRef Name="ma_danh_muc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_khachhang">
+          <End Role="khach_hang" Type="Self.khach_hang" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khach_hang">
+              <PropertyRef Name="ma_khach_hang" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_khach_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_khuyenmai">
+          <End Role="khuyen_mai" Type="Self.khuyen_mai" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khuyen_mai">
+              <PropertyRef Name="ma_khuyen_mai" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_khuyen_mai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donhang_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="don_hang" Type="Self.don_hang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="don_hang">
+              <PropertyRef Name="ma_nhan_vien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pkk_khuvuc">
+          <End Role="khu_vuc_kho" Type="Self.khu_vuc_kho" Multiplicity="0..1" />
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khu_vuc_kho">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Principal>
+            <Dependent Role="phieu_kiem_ke">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_khuvuc">
+          <End Role="khu_vuc_kho" Type="Self.khu_vuc_kho" Multiplicity="0..1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="khu_vuc_kho">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_khu_vuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_lohang">
+          <End Role="lo_hang" Type="Self.lo_hang" Multiplicity="1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lo_hang">
+              <PropertyRef Name="ma_lo_hang" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_lo_hang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_sku_mausp">
+          <End Role="mau_san_pham" Type="Self.mau_san_pham" Multiplicity="1" />
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mau_san_pham">
+              <PropertyRef Name="ma_mau_san_pham" />
+            </Principal>
+            <Dependent Role="san_pham_sku">
+              <PropertyRef Name="ma_mau_san_pham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pkk_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="phieu_kiem_ke">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_nguoidung">
+          <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="0..1" />
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nguoi_dung">
+              <PropertyRef Name="ma_nguoi_dung" />
+            </Principal>
+            <Dependent Role="phieu_nhap_kho">
+              <PropertyRef Name="nguoi_tao" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_phieunhap_ncc">
+          <End Role="nha_cung_cap" Type="Self.nha_cung_cap" Multiplicity="0..1" />
+          <End Role="phieu_nhap_kho" Type="Self.phieu_nhap_kho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="nha_cung_cap">
+              <PropertyRef Name="ma_nha_cung_cap" />
+            </Principal>
+            <Dependent Role="phieu_nhap_kho">
+              <PropertyRef Name="ma_nha_cung_cap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="thuoc_tinh_sku">
+          <End Role="san_pham_sku" Type="Self.san_pham_sku" Multiplicity="*" />
+          <End Role="thuoc_tinh" Type="Self.thuoc_tinh" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DO_AN_QLKEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bao_cao" EntityType="Self.bao_cao" />
+          <EntitySet Name="chi_tiet_don_hang" EntityType="Self.chi_tiet_don_hang" />
+          <EntitySet Name="chi_tiet_kiem_ke" EntityType="Self.chi_tiet_kiem_ke" />
+          <EntitySet Name="chi_tiet_phieu_nhap_kho" EntityType="Self.chi_tiet_phieu_nhap_kho" />
+          <EntitySet Name="danh_muc" EntityType="Self.danh_muc" />
+          <EntitySet Name="don_hang" EntityType="Self.don_hang" />
+          <EntitySet Name="khach_hang" EntityType="Self.khach_hang" />
+          <EntitySet Name="khu_vuc_kho" EntityType="Self.khu_vuc_kho" />
+          <EntitySet Name="khuyen_mai" EntityType="Self.khuyen_mai" />
+          <EntitySet Name="lo_hang" EntityType="Self.lo_hang" />
+          <EntitySet Name="mau_san_pham" EntityType="Self.mau_san_pham" />
+          <EntitySet Name="nguoi_dung" EntityType="Self.nguoi_dung" />
+          <EntitySet Name="nha_cung_cap" EntityType="Self.nha_cung_cap" />
+          <EntitySet Name="phieu_kiem_ke" EntityType="Self.phieu_kiem_ke" />
+          <EntitySet Name="phieu_nhap_kho" EntityType="Self.phieu_nhap_kho" />
+          <EntitySet Name="san_pham_sku" EntityType="Self.san_pham_sku" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="thuoc_tinh" EntityType="Self.thuoc_tinh" />
+          <AssociationSet Name="FK_baocao_nguoidung" Association="Self.FK_baocao_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="bao_cao" EntitySet="bao_cao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_donhang" Association="Self.FK_cthd_donhang">
+            <End Role="don_hang" EntitySet="don_hang" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cthd_sku" Association="Self.FK_cthd_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkk_phieu" Association="Self.FK_ctkk_phieu">
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+            <End Role="chi_tiet_kiem_ke" EntitySet="chi_tiet_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctkk_sku" Association="Self.FK_ctkk_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_kiem_ke" EntitySet="chi_tiet_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctpn_phieunhap" Association="Self.FK_ctpn_phieunhap">
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+            <End Role="chi_tiet_phieu_nhap_kho" EntitySet="chi_tiet_phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ctpn_sku" Association="Self.FK_ctpn_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="chi_tiet_phieu_nhap_kho" EntitySet="chi_tiet_phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mausp_danhmuc" Association="Self.FK_mausp_danhmuc">
+            <End Role="danh_muc" EntitySet="danh_muc" />
+            <End Role="mau_san_pham" EntitySet="mau_san_pham" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_khachhang" Association="Self.FK_donhang_khachhang">
+            <End Role="khach_hang" EntitySet="khach_hang" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_khuyenmai" Association="Self.FK_donhang_khuyenmai">
+            <End Role="khuyen_mai" EntitySet="khuyen_mai" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donhang_nguoidung" Association="Self.FK_donhang_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="don_hang" EntitySet="don_hang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pkk_khuvuc" Association="Self.FK_pkk_khuvuc">
+            <End Role="khu_vuc_kho" EntitySet="khu_vuc_kho" />
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_khuvuc" Association="Self.FK_sku_khuvuc">
+            <End Role="khu_vuc_kho" EntitySet="khu_vuc_kho" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_lohang" Association="Self.FK_sku_lohang">
+            <End Role="lo_hang" EntitySet="lo_hang" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_sku_mausp" Association="Self.FK_sku_mausp">
+            <End Role="mau_san_pham" EntitySet="mau_san_pham" />
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pkk_nguoidung" Association="Self.FK_pkk_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_nguoidung" Association="Self.FK_phieunhap_nguoidung">
+            <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_phieunhap_ncc" Association="Self.FK_phieunhap_ncc">
+            <End Role="nha_cung_cap" EntitySet="nha_cung_cap" />
+            <End Role="phieu_nhap_kho" EntitySet="phieu_nhap_kho" />
+          </AssociationSet>
+          <AssociationSet Name="thuoc_tinh_sku" Association="Self.thuoc_tinh_sku">
+            <End Role="san_pham_sku" EntitySet="san_pham_sku" />
+            <End Role="thuoc_tinh" EntitySet="thuoc_tinh" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ApDungKhuyenMai" ReturnType="Collection(DO_AN_QLKModel.sp_ApDungKhuyenMai_Result)">
+            <Parameter Name="ma_don_hang" Mode="In" Type="Int32" />
+            <Parameter Name="ma_code_khuyen_mai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_BaoCaoDoanhThuTheoThoiGian" ReturnType="Collection(DO_AN_QLKModel.sp_BaoCaoDoanhThuTheoThoiGian_Result)">
+            <Parameter Name="tu_ngay" Mode="In" Type="DateTime" />
+            <Parameter Name="den_ngay" Mode="In" Type="DateTime" />
+            <Parameter Name="nhom_theo" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DO_AN_QLKModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DO_AN_QLKModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_HoanTatKiemKe" ReturnType="Collection(DO_AN_QLKModel.sp_HoanTatKiemKe_Result)">
+            <Parameter Name="ma_phieu_kiem_ke" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_HoanTatNhapKho" ReturnType="Collection(DO_AN_QLKModel.sp_HoanTatNhapKho_Result)">
+            <Parameter Name="ma_phieu_nhap" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_HuyDonHang">
+            <Parameter Name="ma_don_hang" Mode="In" Type="Int32" />
+            <Parameter Name="ly_do_huy" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_QuetSkuNhapKho" ReturnType="Collection(DO_AN_QLKModel.sp_QuetSkuNhapKho_Result)">
+            <Parameter Name="ma_vach_hoac_sku" Mode="In" Type="String" />
+            <Parameter Name="so_luong_them" Mode="In" Type="Int32" />
+            <Parameter Name="ma_khu_vuc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_TaoDonHang">
+            <Parameter Name="ma_code_don_hang" Mode="In" Type="String" />
+            <Parameter Name="ma_nhan_vien" Mode="In" Type="Int32" />
+            <Parameter Name="ma_khach_hang" Mode="In" Type="Int32" />
+            <Parameter Name="ma_khuyen_mai" Mode="In" Type="Int32" />
+            <Parameter Name="tien_giam_gia" Mode="In" Type="Decimal" />
+            <Parameter Name="phi_van_chuyen" Mode="In" Type="Decimal" />
+            <Parameter Name="ghi_chu" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_ApDungKhuyenMai_Result">
+          <Property Type="Int32" Name="ma_don_hang" Nullable="false" />
+          <Property Type="Int32" Name="ma_khuyen_mai" Nullable="true" />
+          <Property Type="Decimal" Name="tien_giam_gia" Nullable="false" Precision="15" Scale="2" />
+          <Property Type="Decimal" Name="thanh_tien" Nullable="false" Precision="15" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_BaoCaoDoanhThuTheoThoiGian_Result">
+          <Property Type="DateTime" Name="moc_thoi_gian" Nullable="true" />
+          <Property Type="Int32" Name="so_luong_don" Nullable="true" />
+          <Property Type="Decimal" Name="doanh_thu" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_HoanTatKiemKe_Result">
+          <Property Type="Int32" Name="ma_sku" Nullable="false" />
+          <Property Type="String" Name="ma_code_sku" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="so_luong_he_thong" Nullable="false" />
+          <Property Type="Int32" Name="so_luong_thuc_te" Nullable="false" />
+          <Property Type="Int32" Name="chenh_lech" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_HoanTatNhapKho_Result">
+          <Property Type="Int32" Name="ma_sku" Nullable="false" />
+          <Property Type="String" Name="ma_code_sku" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="so_luong_thuc_nhan" Nullable="false" />
+          <Property Type="Int32" Name="ton_kho_sau_khi_nhap" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_QuetSkuNhapKho_Result">
+          <Property Type="Int32" Name="ma_sku" Nullable="false" />
+          <Property Type="String" Name="ma_code_sku" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="ton_kho_sau_khi_them" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DO_AN_QLKModelStoreContainer" CdmEntityContainer="DO_AN_QLKEntities">
+          <EntitySetMapping Name="bao_cao">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.bao_cao">
+              <MappingFragment StoreEntitySet="bao_cao">
+                <ScalarProperty Name="ma_bao_cao" ColumnName="ma_bao_cao" />
+                <ScalarProperty Name="ma_code_bao_cao" ColumnName="ma_code_bao_cao" />
+                <ScalarProperty Name="ten_bao_cao" ColumnName="ten_bao_cao" />
+                <ScalarProperty Name="loai_bao_cao" ColumnName="loai_bao_cao" />
+                <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="tom_tat_bo_loc" ColumnName="tom_tat_bo_loc" />
+                <ScalarProperty Name="duong_dan_file" ColumnName="duong_dan_file" />
+                <ScalarProperty Name="noi_dung_bao_cao_json" ColumnName="noi_dung_bao_cao_json" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_don_hang">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_don_hang">
+              <MappingFragment StoreEntitySet="chi_tiet_don_hang">
+                <ScalarProperty Name="ma_chi_tiet_don" ColumnName="ma_chi_tiet_don" />
+                <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+                <ScalarProperty Name="don_gia" ColumnName="don_gia" />
+                <ScalarProperty Name="gia_von" ColumnName="gia_von" />
+                <ScalarProperty Name="thanh_tien_dong" ColumnName="thanh_tien_dong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_kiem_ke">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_kiem_ke">
+              <MappingFragment StoreEntitySet="chi_tiet_kiem_ke">
+                <ScalarProperty Name="ma_chi_tiet_kiem_ke" ColumnName="ma_chi_tiet_kiem_ke" />
+                <ScalarProperty Name="ma_phieu_kiem_ke" ColumnName="ma_phieu_kiem_ke" />
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="so_luong_he_thong" ColumnName="so_luong_he_thong" />
+                <ScalarProperty Name="so_luong_thuc_te" ColumnName="so_luong_thuc_te" />
+                <ScalarProperty Name="chenh_lech" ColumnName="chenh_lech" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="chi_tiet_phieu_nhap_kho">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.chi_tiet_phieu_nhap_kho">
+              <MappingFragment StoreEntitySet="chi_tiet_phieu_nhap_kho">
+                <ScalarProperty Name="ma_chi_tiet_phieu_nhap" ColumnName="ma_chi_tiet_phieu_nhap" />
+                <ScalarProperty Name="ma_phieu_nhap" ColumnName="ma_phieu_nhap" />
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="so_luong_ke_hoach" ColumnName="so_luong_ke_hoach" />
+                <ScalarProperty Name="so_luong_thuc_nhan" ColumnName="so_luong_thuc_nhan" />
+                <ScalarProperty Name="don_gia_nhap" ColumnName="don_gia_nhap" />
+                <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="danh_muc">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.danh_muc">
+              <MappingFragment StoreEntitySet="danh_muc">
+                <ScalarProperty Name="ma_danh_muc" ColumnName="ma_danh_muc" />
+                <ScalarProperty Name="ma_code_danh_muc" ColumnName="ma_code_danh_muc" />
+                <ScalarProperty Name="ten_danh_muc" ColumnName="ten_danh_muc" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="don_hang">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.don_hang">
+              <MappingFragment StoreEntitySet="don_hang">
+                <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+                <ScalarProperty Name="ma_code_don_hang" ColumnName="ma_code_don_hang" />
+                <ScalarProperty Name="ma_khach_hang" ColumnName="ma_khach_hang" />
+                <ScalarProperty Name="ma_nhan_vien" ColumnName="ma_nhan_vien" />
+                <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+                <ScalarProperty Name="ngay_dat_hang" ColumnName="ngay_dat_hang" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="trang_thai_thanh_toan" ColumnName="trang_thai_thanh_toan" />
+                <ScalarProperty Name="tong_tien_hang" ColumnName="tong_tien_hang" />
+                <ScalarProperty Name="tien_giam_gia" ColumnName="tien_giam_gia" />
+                <ScalarProperty Name="phi_van_chuyen" ColumnName="phi_van_chuyen" />
+                <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="ngay_huy" ColumnName="ngay_huy" />
+                <ScalarProperty Name="ly_do_huy" ColumnName="ly_do_huy" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khach_hang">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.khach_hang">
+              <MappingFragment StoreEntitySet="khach_hang">
+                <ScalarProperty Name="ma_khach_hang" ColumnName="ma_khach_hang" />
+                <ScalarProperty Name="ten_khach_hang" ColumnName="ten_khach_hang" />
+                <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khu_vuc_kho">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.khu_vuc_kho">
+              <MappingFragment StoreEntitySet="khu_vuc_kho">
+                <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+                <ScalarProperty Name="ten_khu_vuc" ColumnName="ten_khu_vuc" />
+                <ScalarProperty Name="loai_khu_vuc" ColumnName="loai_khu_vuc" />
+                <ScalarProperty Name="dien_tich_m2" ColumnName="dien_tich_m2" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="khuyen_mai">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.khuyen_mai">
+              <MappingFragment StoreEntitySet="khuyen_mai">
+                <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+                <ScalarProperty Name="ma_code_khuyen_mai" ColumnName="ma_code_khuyen_mai" />
+                <ScalarProperty Name="ten_khuyen_mai" ColumnName="ten_khuyen_mai" />
+                <ScalarProperty Name="loai_giam_gia" ColumnName="loai_giam_gia" />
+                <ScalarProperty Name="gia_tri_giam" ColumnName="gia_tri_giam" />
+                <ScalarProperty Name="gia_tri_don_toi_thieu" ColumnName="gia_tri_don_toi_thieu" />
+                <ScalarProperty Name="ngay_bat_dau" ColumnName="ngay_bat_dau" />
+                <ScalarProperty Name="ngay_ket_thuc" ColumnName="ngay_ket_thuc" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lo_hang">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.lo_hang">
+              <MappingFragment StoreEntitySet="lo_hang">
+                <ScalarProperty Name="ma_lo_hang" ColumnName="ma_lo_hang" />
+                <ScalarProperty Name="ma_code_lo_hang" ColumnName="ma_code_lo_hang" />
+                <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mau_san_pham">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.mau_san_pham">
+              <MappingFragment StoreEntitySet="mau_san_pham">
+                <ScalarProperty Name="ma_mau_san_pham" ColumnName="ma_mau_san_pham" />
+                <ScalarProperty Name="ma_danh_muc" ColumnName="ma_danh_muc" />
+                <ScalarProperty Name="ten_san_pham" ColumnName="ten_san_pham" />
+                <ScalarProperty Name="ma_code_ten_sp" ColumnName="ma_code_ten_sp" />
+                <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+                <ScalarProperty Name="duong_dan_hinh_anh" ColumnName="duong_dan_hinh_anh" />
+                <ScalarProperty Name="gia_thi_truong" ColumnName="gia_thi_truong" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nguoi_dung">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.nguoi_dung">
+              <MappingFragment StoreEntitySet="nguoi_dung">
+                <ScalarProperty Name="ma_nguoi_dung" ColumnName="ma_nguoi_dung" />
+                <ScalarProperty Name="ten_dang_nhap" ColumnName="ten_dang_nhap" />
+                <ScalarProperty Name="mat_khau_ma_hoa" ColumnName="mat_khau_ma_hoa" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="vai_tro" ColumnName="vai_tro" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nha_cung_cap">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.nha_cung_cap">
+              <MappingFragment StoreEntitySet="nha_cung_cap">
+                <ScalarProperty Name="ma_nha_cung_cap" ColumnName="ma_nha_cung_cap" />
+                <ScalarProperty Name="ma_code_ncc" ColumnName="ma_code_ncc" />
+                <ScalarProperty Name="ten_nha_cung_cap" ColumnName="ten_nha_cung_cap" />
+                <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
+                <ScalarProperty Name="trang_thai_hoat_dong" ColumnName="trang_thai_hoat_dong" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phieu_kiem_ke">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.phieu_kiem_ke">
+              <MappingFragment StoreEntitySet="phieu_kiem_ke">
+                <ScalarProperty Name="ma_phieu_kiem_ke" ColumnName="ma_phieu_kiem_ke" />
+                <ScalarProperty Name="ma_code_kiem_ke" ColumnName="ma_code_kiem_ke" />
+                <ScalarProperty Name="ngay_kiem_ke" ColumnName="ngay_kiem_ke" />
+                <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+                <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phieu_nhap_kho">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.phieu_nhap_kho">
+              <MappingFragment StoreEntitySet="phieu_nhap_kho">
+                <ScalarProperty Name="ma_phieu_nhap" ColumnName="ma_phieu_nhap" />
+                <ScalarProperty Name="ma_code_phieu_nhap" ColumnName="ma_code_phieu_nhap" />
+                <ScalarProperty Name="ma_nha_cung_cap" ColumnName="ma_nha_cung_cap" />
+                <ScalarProperty Name="nguoi_tao" ColumnName="nguoi_tao" />
+                <ScalarProperty Name="ngay_nhap" ColumnName="ngay_nhap" />
+                <ScalarProperty Name="trang_thai" ColumnName="trang_thai" />
+                <ScalarProperty Name="ghi_chu" ColumnName="ghi_chu" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="tong_tien_hang" ColumnName="tong_tien_hang" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="san_pham_sku">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.san_pham_sku">
+              <MappingFragment StoreEntitySet="san_pham_sku">
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+                <ScalarProperty Name="ma_mau_san_pham" ColumnName="ma_mau_san_pham" />
+                <ScalarProperty Name="ma_lo_hang" ColumnName="ma_lo_hang" />
+                <ScalarProperty Name="so_thu_tu" ColumnName="so_thu_tu" />
+                <ScalarProperty Name="tom_tat_thuoc_tinh" ColumnName="tom_tat_thuoc_tinh" />
+                <ScalarProperty Name="ma_vach" ColumnName="ma_vach" />
+                <ScalarProperty Name="gia_von" ColumnName="gia_von" />
+                <ScalarProperty Name="gia_niem_yet" ColumnName="gia_niem_yet" />
+                <ScalarProperty Name="so_luong" ColumnName="so_luong" />
+                <ScalarProperty Name="trang_thai_vong_doi" ColumnName="trang_thai_vong_doi" />
+                <ScalarProperty Name="ma_khu_vuc" ColumnName="ma_khu_vuc" />
+                <ScalarProperty Name="ma_vi_tri" ColumnName="ma_vi_tri" />
+                <ScalarProperty Name="ngay_tao" ColumnName="ngay_tao" />
+                <ScalarProperty Name="ngay_cap_nhat" ColumnName="ngay_cap_nhat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="thuoc_tinh">
+            <EntityTypeMapping TypeName="DO_AN_QLKModel.thuoc_tinh">
+              <MappingFragment StoreEntitySet="thuoc_tinh">
+                <ScalarProperty Name="ma_thuoc_tinh" ColumnName="ma_thuoc_tinh" />
+                <ScalarProperty Name="loai_thuoc_tinh" ColumnName="loai_thuoc_tinh" />
+                <ScalarProperty Name="ten_thuoc_tinh" ColumnName="ten_thuoc_tinh" />
+                <ScalarProperty Name="ma_code_thuoc_tinh" ColumnName="ma_code_thuoc_tinh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="thuoc_tinh_sku" TypeName="DO_AN_QLKModel.thuoc_tinh_sku" StoreEntitySet="thuoc_tinh_sku">
+            <EndProperty Name="san_pham_sku">
+              <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+            </EndProperty>
+            <EndProperty Name="thuoc_tinh">
+              <ScalarProperty Name="ma_thuoc_tinh" ColumnName="ma_thuoc_tinh" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DO_AN_QLKModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_ApDungKhuyenMai" FunctionName="DO_AN_QLKModel.Store.sp_ApDungKhuyenMai">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_ApDungKhuyenMai_Result">
+                <ScalarProperty Name="ma_don_hang" ColumnName="ma_don_hang" />
+                <ScalarProperty Name="ma_khuyen_mai" ColumnName="ma_khuyen_mai" />
+                <ScalarProperty Name="tien_giam_gia" ColumnName="tien_giam_gia" />
+                <ScalarProperty Name="thanh_tien" ColumnName="thanh_tien" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_BaoCaoDoanhThuTheoThoiGian" FunctionName="DO_AN_QLKModel.Store.sp_BaoCaoDoanhThuTheoThoiGian">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_BaoCaoDoanhThuTheoThoiGian_Result">
+                <ScalarProperty Name="moc_thoi_gian" ColumnName="moc_thoi_gian" />
+                <ScalarProperty Name="so_luong_don" ColumnName="so_luong_don" />
+                <ScalarProperty Name="doanh_thu" ColumnName="doanh_thu" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DO_AN_QLKModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DO_AN_QLKModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DO_AN_QLKModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DO_AN_QLKModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_HoanTatKiemKe" FunctionName="DO_AN_QLKModel.Store.sp_HoanTatKiemKe">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_HoanTatKiemKe_Result">
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+                <ScalarProperty Name="so_luong_he_thong" ColumnName="so_luong_he_thong" />
+                <ScalarProperty Name="so_luong_thuc_te" ColumnName="so_luong_thuc_te" />
+                <ScalarProperty Name="chenh_lech" ColumnName="chenh_lech" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_HoanTatNhapKho" FunctionName="DO_AN_QLKModel.Store.sp_HoanTatNhapKho">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_HoanTatNhapKho_Result">
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+                <ScalarProperty Name="so_luong_thuc_nhan" ColumnName="so_luong_thuc_nhan" />
+                <ScalarProperty Name="ton_kho_sau_khi_nhap" ColumnName="ton_kho_sau_khi_nhap" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_HuyDonHang" FunctionName="DO_AN_QLKModel.Store.sp_HuyDonHang" />
+          <FunctionImportMapping FunctionImportName="sp_QuetSkuNhapKho" FunctionName="DO_AN_QLKModel.Store.sp_QuetSkuNhapKho">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DO_AN_QLKModel.sp_QuetSkuNhapKho_Result">
+                <ScalarProperty Name="ma_sku" ColumnName="ma_sku" />
+                <ScalarProperty Name="ma_code_sku" ColumnName="ma_code_sku" />
+                <ScalarProperty Name="ton_kho_sau_khi_them" ColumnName="ton_kho_sau_khi_them" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DO_AN_QLKModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_TaoDonHang" FunctionName="DO_AN_QLKModel.Store.sp_TaoDonHang" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DO_AN_QLKModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,2 @@
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\obj\Debug\QLK.csproj.AssemblyReference.cache
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\obj\Debug\QLK.csproj.CoreCompileInputs.cache
