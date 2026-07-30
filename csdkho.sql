@@ -114,6 +114,70 @@
    đây là lựa chọn nghiệp vụ tùy shop (có nơi cho giao hàng COD trước,
    thu tiền sau) - cần xác nhận quy trình thực tế trước khi enforce ở
    tầng CSDL, tránh chặn nhầm luồng hợp lệ.
+
+   ------------------------------------------------------------------------
+   BỔ SUNG MỚI (chặn hủy đơn hàng sau khi đã tạo) - ĐÃ ĐƯỢC SỬA LẠI Ở MỤC [14]
+   ------------------------------------------------------------------------
+   [12] (ĐÃ THAY THẾ BỞI [14], xem bên dưới) Vì đây là hệ thống nội bộ quản
+        lý kho (nhân viên thao tác, không phải web cho khách tự đặt hàng),
+        quy tắc BAN ĐẦU là: MỘT KHI ĐƠN HÀNG ĐÃ ĐƯỢC TẠO THÌ KHÔNG ĐƯỢC PHÉP
+        HỦY NỮA, bất kể đang ở trạng thái nào - thực hiện bằng trigger
+        trg_donhang_chan_huy chặn tuyệt đối mọi UPDATE sang CANCELLED.
+        Quy tắc này sau đó được nới lỏng lại ở mục [14] (cho phép hủy có
+        điều kiện thay vì chặn hết) nên trigger trg_donhang_chan_huy đã bị
+        BỎ khỏi file - chỉ giữ lại đoạn này trong changelog để biết lịch sử.
+
+   ------------------------------------------------------------------------
+   BỔ SUNG MỚI (loại bỏ trạng thái DRAFT không còn tác dụng)
+   ------------------------------------------------------------------------
+   [13] Bỏ trạng thái 'DRAFT' khỏi don_hang.trang_thai. Lý do: sp_TaoDonHang
+        luôn tạo đơn thẳng ở CONFIRMED, DRAFT chưa từng thực sự được dùng
+        trong bất kỳ luồng nào (chỉ tồn tại như giá trị mặc định của cột và
+        1 điều kiện chưa từng có tác dụng trong trg_cthd_tru_ton_khi_ban).
+        - don_hang.trang_thai: đổi DEFAULT từ 'DRAFT' sang 'CONFIRMED',
+          bỏ 'DRAFT' khỏi CHECK constraint (chỉ còn CONFIRMED/COMPLETED/
+          CANCELLED).
+        - trg_cthd_tru_ton_khi_ban: sửa điều kiện kiểm tra từ
+          "NOT IN ('DRAFT', 'CONFIRMED')" thành "<> 'CONFIRMED'".
+
+   ------------------------------------------------------------------------
+   BỔ SUNG MỚI (sửa lại quy tắc hủy đơn: cho phép có điều kiện thay vì
+   chặn tuyệt đối như mục [12])
+   ------------------------------------------------------------------------
+   [14] Quy tắc mới: CHỈ "ông chủ" (vai_tro = 'CHU') mới có quyền hủy đơn
+        hàng, VÀ chỉ hủy được đơn CHƯA thanh toán (UNPAID). Đơn đã PAID thì
+        không ai hủy được, kể cả ông chủ.
+
+        - Đã BỎ trigger trg_donhang_chan_huy (mục [12]) vì không còn chặn
+          tuyệt đối nữa. Điều kiện "đơn đã PAID không được hủy" KHÔNG cần
+          trigger riêng vì bảng don_hang đã có sẵn CONSTRAINT
+          CK_donhang_huy_chuathanhtoan chặn tuyệt đối tổ hợp CANCELLED+PAID
+          ở tầng bảng từ trước (không ai bypass được).
+        - Điều kiện "chỉ CHU mới được hủy" KHÔNG THỂ đặt trong trigger vì
+          trigger không biết ai đang thực hiện thao tác (đúng theo hướng đã
+          chọn trước đây: phân quyền xử lý ở tầng ứng dụng). Vì vậy được
+          kiểm tra trong sp_HuyDonHang qua tham số mới @ma_nguoi_thuc_hien -
+          tầng web PHẢI truyền vào ID người đang đăng nhập (lấy từ Session),
+          KHÔNG được để người dùng tự nhập giá trị này.
+        - vai_tro của nguoi_dung được bổ sung thêm giá trị 'CHU' vào CHECK
+          constraint (do người dùng tự thêm trong file gốc trước khi upload
+          lại, không phải Claude thêm).
+        - sp_HuyDonHang: viết lại để thực sự thực hiện việc hủy (trước đây
+          ở mục [12] luôn báo lỗi ngay từ đầu, giờ được hoạt động trở lại
+          nếu đủ điều kiện).
+        - HỆ QUẢ: trigger trg_donhang_hoan_ton_khi_huy (hoàn kho khi hủy)
+          hoạt động BÌNH THƯỜNG TRỞ LẠI, vì đơn chưa thanh toán giờ lại có
+          thể được hủy qua sp_HuyDonHang.
+
+   ------------------------------------------------------------------------
+   BỔ SUNG MỚI (khóa quyền UPDATE trực tiếp, buộc đi qua SP)
+   ------------------------------------------------------------------------
+   [15] Thêm REVOKE UPDATE ON don_hang + GRANT EXECUTE trên các SP liên
+        quan, ở CUỐI FILE, cho tài khoản SQL của ứng dụng web (đặt tên
+        placeholder 'app_user' - CẦN đổi thành tên tài khoản thật trước khi
+        chạy). Lý do: nếu không khóa, kiểm tra quyền "chỉ CHU mới được hủy"
+        trong sp_HuyDonHang (mục [14]) có thể bị bỏ qua bằng cách chạy
+        UPDATE don_hang trực tiếp, không qua SP.
    ======================================================================== */
 
 CREATE DATABASE DO_AN_QLK
@@ -247,7 +311,7 @@ CREATE TABLE nguoi_dung (
     mat_khau_ma_hoa VARCHAR(255) NOT NULL,                 -- Mật khẩu đã mã hóa
     ho_ten NVARCHAR(100) NOT NULL,                         -- Họ tên nhân viên
     vai_tro VARCHAR(20) DEFAULT 'SALES'
-        CHECK (vai_tro IN ('QUAN_LY', 'NHAN_VIEN_KHO', 'BAN_HANG', 'TAI_XE')), -- Vai trò/phân quyền
+        CHECK (vai_tro IN ('CHU','QUAN_LY', 'NHAN_VIEN_KHO', 'BAN_HANG', 'TAI_XE')), -- Vai trò/phân quyền
     trang_thai_hoat_dong BIT DEFAULT 1,                    -- 1 = đang làm việc
     ngay_tao DATETIME DEFAULT GETDATE(),                   -- Ngày tạo tài khoản
     ngay_cap_nhat DATETIME DEFAULT GETDATE()               -- Ngày cập nhật gần nhất
@@ -265,8 +329,11 @@ CREATE TABLE don_hang (
     ma_nhan_vien INT,                                      -- Nhân viên phụ trách đơn
     ma_khuyen_mai INT NULL,                                -- Chương trình khuyến mãi áp dụng (nếu có)
     ngay_dat_hang DATETIME2 DEFAULT GETDATE(),             -- Ngày giờ tạo đơn
-    trang_thai VARCHAR(20) DEFAULT 'DRAFT'
-        CHECK (trang_thai IN ('DRAFT', 'CONFIRMED', 'COMPLETED', 'CANCELLED')), -- Trạng thái đơn hàng
+    -- BỔ SUNG [13]: bỏ trạng thái DRAFT (không còn tác dụng - sp_TaoDonHang
+    -- luôn tạo đơn thẳng ở CONFIRMED, DRAFT chưa từng thực sự được dùng).
+    -- Đổi mặc định sang CONFIRMED vì đây là trạng thái thực tế khi đơn được tạo.
+    trang_thai VARCHAR(20) DEFAULT 'CONFIRMED'
+        CHECK (trang_thai IN ('CONFIRMED', 'COMPLETED', 'CANCELLED')), -- Trạng thái đơn hàng
     trang_thai_thanh_toan VARCHAR(20) DEFAULT 'UNPAID'
         CHECK (trang_thai_thanh_toan IN ('UNPAID', 'PAID')), -- Đã thanh toán hay chưa (chỉ hủy được khi UNPAID)
     tong_tien_hang DECIMAL(15,2) NOT NULL DEFAULT 0,       -- Tổng tiền hàng trước giảm giá
@@ -557,7 +624,9 @@ BEGIN
         SELECT 1
         FROM inserted i
         INNER JOIN don_hang dh ON dh.ma_don_hang = i.ma_don_hang
-        WHERE dh.trang_thai NOT IN ('DRAFT', 'CONFIRMED')
+        -- BỔ SUNG [13]: bỏ DRAFT khỏi điều kiện (đã loại bỏ trạng thái DRAFT),
+    -- giờ chỉ còn CONFIRMED là trạng thái hợp lệ để thêm dòng chi tiết.
+    WHERE dh.trang_thai <> 'CONFIRMED'
     )
     BEGIN
         RAISERROR (N'Không thể thêm sản phẩm vào đơn hàng đã hủy hoặc đã hoàn tất.', 16, 1);
@@ -630,6 +699,25 @@ BEGIN
     END
 END;
 GO
+
+-- ------------------------------------------------------------------------
+-- BỔ SUNG [14]: Đã BỎ trigger trg_donhang_chan_huy (từng chặn tuyệt đối
+-- mọi trường hợp hủy đơn, mục [12]). Lý do: quy tắc mới là VẪN CHO PHÉP
+-- hủy đơn, nhưng có điều kiện chặt hơn thay vì chặn hết:
+--   1) Đơn ĐÃ THANH TOÁN (PAID) thì KHÔNG được hủy - điều này KHÔNG CẦN
+--      trigger riêng, vì bảng don_hang đã có sẵn CONSTRAINT
+--      CK_donhang_huy_chuathanhtoan (CHECK NOT (trang_thai='CANCELLED'
+--      AND trang_thai_thanh_toan='PAID')) chặn tuyệt đối ở tầng bảng rồi -
+--      không ai bypass được kể cả chạy UPDATE trực tiếp.
+--   2) CHỈ "ông chủ" (vai_tro = 'CHU') mới có quyền hủy - quy tắc này CẦN
+--      biết ai đang thực hiện thao tác, mà trigger không có thông tin đó
+--      (đúng theo hướng đã chọn trước đây: xử lý phân quyền ở tầng ứng
+--      dụng). Vì vậy được kiểm tra trong sp_HuyDonHang thông qua tham số
+--      @ma_nguoi_thuc_hien do tầng web truyền vào (lấy từ Session).
+-- HỆ QUẢ: trigger trg_donhang_hoan_ton_khi_huy (hoàn kho khi hủy) giờ
+-- HOẠT ĐỘNG TRỞ LẠI bình thường, vì đơn chưa thanh toán lại có thể được
+-- hủy qua sp_HuyDonHang.
+-- ------------------------------------------------------------------------
 
 -- ------------------------------------------------------------------------
 -- TRG 5: Khi phieu_kiem_ke chuyển sang COMPLETED -> cập nhật tồn kho
@@ -849,10 +937,18 @@ END;
 GO
 
 -- ------------------------------------------------------------------------
--- SP 2: Hủy đơn hàng - chỉ cho phép khi chưa thanh toán (UNPAID)
+-- SP 2: Hủy đơn hàng
+-- BỔ SUNG [14]: Chỉ "ông chủ" (vai_tro = 'CHU') mới có quyền hủy đơn, và
+-- chỉ hủy được đơn CHƯA thanh toán (UNPAID). Đơn đã PAID không thể hủy dù
+-- là ông chủ hay ai đi nữa - phần này còn được bảo vệ thêm ở tầng bảng bởi
+-- CONSTRAINT CK_donhang_huy_chuathanhtoan (không thể bypass).
+-- @ma_nguoi_thuc_hien: mã người dùng đang thực hiện thao tác hủy, tầng web
+-- PHẢI truyền vào giá trị lấy từ Session (người đang đăng nhập), không cho
+-- phép người dùng tự nhập tùy ý.
 -- ------------------------------------------------------------------------
 CREATE PROCEDURE sp_HuyDonHang
     @ma_don_hang INT,
+    @ma_nguoi_thuc_hien INT,
     @ly_do_huy NVARCHAR(MAX) = NULL
 AS
 BEGIN
@@ -868,6 +964,17 @@ BEGIN
         RETURN;
     END
 
+    -- Kiểm tra quyền: chỉ ông chủ (CHU) mới được hủy đơn
+    IF NOT EXISTS (
+        SELECT 1 FROM nguoi_dung
+        WHERE ma_nguoi_dung = @ma_nguoi_thuc_hien AND vai_tro = 'CHU'
+    )
+    BEGIN
+        RAISERROR (N'Chỉ có ông chủ mới có quyền hủy đơn hàng.', 16, 1);
+        RETURN;
+    END
+
+    -- Kiểm tra đã thanh toán chưa
     IF @trang_thai_tt = 'PAID'
     BEGIN
         RAISERROR (N'Đơn hàng đã thanh toán, không thể hủy.', 16, 1);
@@ -1165,4 +1272,50 @@ BEGIN
     INNER JOIN san_pham_sku sp ON sp.ma_sku = ct.ma_sku
     WHERE ct.ma_phieu_nhap = @ma_phieu_nhap;
 END;
+GO
+
+-- ============================================================================
+-- BỔ SUNG [15]: KHÓA QUYỀN UPDATE TRỰC TIẾP TRÊN don_hang
+-- ============================================================================
+-- LÝ DO: sp_HuyDonHang (mục [14]) có kiểm tra vai trò (chỉ 'CHU' được hủy)
+-- và trạng thái thanh toán trước khi hủy đơn. Nhưng kiểm tra đó CHỈ có tác
+-- dụng nếu MỌI thay đổi trạng thái đơn hàng đều bắt buộc đi qua SP này.
+-- Nếu tài khoản SQL mà ứng dụng web dùng để kết nối vẫn còn quyền UPDATE
+-- trực tiếp trên bảng don_hang, ai đó (hoặc đoạn code khác trong app) vẫn
+-- có thể chạy thẳng:
+--     UPDATE don_hang SET trang_thai = 'CANCELLED' WHERE ma_don_hang = ...
+-- và bỏ qua hoàn toàn kiểm tra quyền "chỉ CHU mới được hủy" trong SP.
+--
+-- CƠ CHẾ: SQL Server dùng "ownership chaining" - vì stored procedure và
+-- bảng don_hang trong file này đều thuộc cùng 1 owner (schema mặc định
+-- dbo), tài khoản chỉ cần quyền EXECUTE trên procedure là đủ để procedure
+-- đó UPDATE được bảng bên trong, KHÔNG cần thêm quyền UPDATE trực tiếp
+-- trên bảng. Vì vậy REVOKE dưới đây không làm hỏng các SP hiện có
+-- (sp_HuyDonHang, sp_TaoDonHang, sp_ApDungKhuyenMai vẫn chạy bình thường).
+--
+-- ⚠️ QUAN TRỌNG - CẦN BẠN TỰ KIỂM TRA TRƯỚC KHI CHẠY:
+-- Thay 'app_user' bên dưới bằng ĐÚNG tên SQL Login/User mà ứng dụng
+-- ASP.NET MVC của bạn dùng để kết nối CSDL (xem trong Web.config, phần
+-- <connectionStrings> -> User ID=...). Nếu chạy nhầm tên tài khoản không
+-- tồn tại, các câu lệnh bên dưới sẽ báo lỗi và không có tác dụng gì.
+--
+-- Nếu bạn CHƯA có tài khoản SQL riêng cho ứng dụng (web đang dùng chung
+-- tài khoản 'sa' hoặc tài khoản có quyền admin để kết nối), thì REVOKE
+-- dưới đây sẽ KHÔNG có tác dụng thực tế, vì tài khoản admin luôn bỏ qua
+-- được các quyền đã revoke. Trong trường hợp đó, việc đầu tiên cần làm là
+-- tạo 1 tài khoản SQL riêng, ít quyền hơn cho ứng dụng - bỏ comment 2 dòng
+-- CREATE LOGIN / CREATE USER bên dưới và tự đặt mật khẩu mạnh.
+-- ============================================================================
+
+-- Bỏ comment nếu ứng dụng CHƯA có tài khoản SQL riêng (đổi mật khẩu trước khi chạy):
+-- CREATE LOGIN app_user WITH PASSWORD = N'DoiMatKhauManhODay!123';
+-- CREATE USER app_user FOR LOGIN app_user;
+
+-- Khóa quyền sửa trực tiếp trạng thái đơn hàng - buộc phải đi qua SP
+REVOKE UPDATE ON don_hang FROM app_user;
+
+-- Cấp quyền chạy các stored procedure có thao tác trên don_hang
+GRANT EXECUTE ON sp_HuyDonHang TO app_user;
+GRANT EXECUTE ON sp_TaoDonHang TO app_user;
+GRANT EXECUTE ON sp_ApDungKhuyenMai TO app_user;
 GO
