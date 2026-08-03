@@ -310,7 +310,7 @@ CREATE TABLE nguoi_dung (
     ten_dang_nhap VARCHAR(50) NOT NULL UNIQUE,             -- Tên đăng nhập
     mat_khau_ma_hoa VARCHAR(255) NOT NULL,                 -- Mật khẩu đã mã hóa
     ho_ten NVARCHAR(100) NOT NULL,                         -- Họ tên nhân viên
-    vai_tro VARCHAR(20) DEFAULT 'SALES'
+    vai_tro VARCHAR(20) DEFAULT 'BAN_HANG'
         CHECK (vai_tro IN ('CHU','QUAN_LY', 'NHAN_VIEN_KHO', 'BAN_HANG', 'TAI_XE')), -- Vai trò/phân quyền
     trang_thai_hoat_dong BIT DEFAULT 1,                    -- 1 = đang làm việc
     ngay_tao DATETIME DEFAULT GETDATE(),                   -- Ngày tạo tài khoản
@@ -1319,3 +1319,163 @@ GRANT EXECUTE ON sp_HuyDonHang TO app_user;
 GRANT EXECUTE ON sp_TaoDonHang TO app_user;
 GRANT EXECUTE ON sp_ApDungKhuyenMai TO app_user;
 GO
+
+
+/* ============================================================================
+   BỔ SUNG [16]: MODULE VẬN CHUYỂN (chuyến giao hàng)
+   Chạy đoạn này SAU KHI đã có toàn bộ schema gốc (cơ_sở_dữ_liệu_kho).
+   Gồm 3 phần:
+     1) Thêm cột hinh_thuc_nhan_hang vào don_hang (phân biệt bán tại shop /
+        cần giao hàng - trước đây không có, không phân biệt được đơn "không
+        cần giao" với đơn "cần giao nhưng bị bỏ sót chưa xếp chuyến").
+     2) 2 bảng mới: chuyen_giao_hang (1 chuyến của 1 tài xế) và
+        chi_tiet_chuyen_giao (các đơn hàng nằm trong chuyến đó).
+     3) Trigger đồng bộ: khi 1 đơn được đánh dấu "đã giao" trong chuyến, tự
+        động chuyển don_hang.trang_thai sang COMPLETED - tránh tình trạng
+        trang_thai_giao và don_hang.trang_thai lệch nhau do quên cập nhật
+        tay ở 1 trong 2 nơi.
+   ========================================================================= */
+
+-- ----------------------------------------------------------------------
+-- PHẦN 1: Thêm cột phân loại hình thức nhận hàng vào don_hang
+-- ----------------------------------------------------------------------
+ALTER TABLE don_hang
+ADD hinh_thuc_nhan_hang VARCHAR(20) NOT NULL DEFAULT 'TAI_SHOP'
+    CONSTRAINT CK_donhang_hinhthuc CHECK (hinh_thuc_nhan_hang IN ('TAI_SHOP', 'GIAO_HANG'));
+GO
+
+-- ----------------------------------------------------------------------
+-- PHẦN 2: Bảng chuyen_giao_hang - đại diện 1 chuyến đi của 1 tài xế
+-- ----------------------------------------------------------------------
+CREATE TABLE chuyen_giao_hang (
+    ma_chuyen INT IDENTITY(1,1) PRIMARY KEY,               -- Mã chuyến (khóa chính)
+    ma_code_chuyen VARCHAR(30) NOT NULL UNIQUE,            -- Mã code chuyến hiển thị
+    ma_tai_xe INT NOT NULL,                                -- Tài xế phụ trách chuyến này
+    ngay_khoi_hanh DATETIME2 NULL,                         -- Thời điểm xe xuất phát
+    ngay_hoan_tat DATETIME2 NULL,                          -- Thời điểm hoàn tất cả chuyến
+    trang_thai VARCHAR(20) NOT NULL DEFAULT 'DANG_CHUAN_BI'
+        CHECK (trang_thai IN ('DANG_CHUAN_BI', 'DANG_GIAO', 'HOAN_TAT', 'HUY')),
+    ghi_chu NVARCHAR(MAX) NULL,
+    ngay_tao DATETIME2 DEFAULT GETDATE(),
+    CONSTRAINT FK_chuyengiaohang_taixe FOREIGN KEY (ma_tai_xe) REFERENCES nguoi_dung(ma_nguoi_dung)
+);
+GO
+
+-- Đảm bảo ma_tai_xe thực sự là tài xế (không cho gán nhầm nhân viên bán hàng...)
+-- Lưu ý: CHECK constraint không cho phép sub-query trực tiếp trong SQL Server,
+-- nên ràng buộc này được thực hiện bằng trigger thay vì CHECK.
+GO
+CREATE TRIGGER trg_chuyengiaohang_kiemtra_vaitro
+ON chuyen_giao_hang
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+    IF TRIGGER_NESTLEVEL(OBJECT_ID('trg_chuyengiaohang_kiemtra_vaitro')) > 1 RETURN;
+
+    IF EXISTS (
+        SELECT 1
+        FROM inserted i
+        INNER JOIN nguoi_dung nd ON nd.ma_nguoi_dung = i.ma_tai_xe
+        WHERE nd.vai_tro <> 'TAI_XE'
+    )
+    BEGIN
+        RAISERROR (N'Người được gán chỉ có thể là tài xế (vai_tro = TAI_XE).', 16, 1);
+        RETURN;
+    END
+END;
+GO
+
+-- Index phục vụ lọc "chuyến của tài xế X" và "chuyến theo trạng thái"
+CREATE INDEX IX_chuyengiaohang_taixe ON chuyen_giao_hang(ma_tai_xe);
+CREATE INDEX IX_chuyengiaohang_trangthai ON chuyen_giao_hang(trang_thai);
+GO
+
+-- ----------------------------------------------------------------------
+-- PHẦN 2b: Bảng chi_tiet_chuyen_giao - các đơn hàng nằm trong 1 chuyến
+-- ----------------------------------------------------------------------
+CREATE TABLE chi_tiet_chuyen_giao (
+    ma_chuyen INT NOT NULL,                                -- Thuộc chuyến nào
+    ma_don_hang INT NOT NULL,                              -- Giao đơn hàng nào
+    trang_thai_giao VARCHAR(20) NOT NULL DEFAULT 'CHUA_GIAO'
+        CHECK (trang_thai_giao IN ('CHUA_GIAO', 'DA_GIAO', 'GIAO_THAT_BAI')),
+    ghi_chu_giao NVARCHAR(MAX) NULL,                       -- Lý do thất bại, ghi chú của tài xế...
+    ngay_cap_nhat DATETIME2 DEFAULT GETDATE(),
+    CONSTRAINT PK_chitietchuyengiao PRIMARY KEY (ma_chuyen, ma_don_hang),
+    CONSTRAINT FK_ctcg_chuyen FOREIGN KEY (ma_chuyen) REFERENCES chuyen_giao_hang(ma_chuyen) ON DELETE CASCADE,
+    CONSTRAINT FK_ctcg_donhang FOREIGN KEY (ma_don_hang) REFERENCES don_hang(ma_don_hang)
+);
+GO
+
+-- Không cho 1 đơn hàng bị xếp vào 2 chuyến khác nhau cùng lúc
+CREATE UNIQUE INDEX UX_ctcg_mot_don_mot_chuyen_dangchay
+ON chi_tiet_chuyen_giao(ma_don_hang)
+WHERE trang_thai_giao = 'CHUA_GIAO';
+GO
+
+-- Chỉ cho thêm đơn "GIAO_HANG" (không phải TAI_SHOP) vào chi_tiet_chuyen_giao
+CREATE TRIGGER trg_ctcg_kiemtra_hinhthuc
+ON chi_tiet_chuyen_giao
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+
+    IF EXISTS (
+        SELECT 1
+        FROM inserted i
+        INNER JOIN don_hang dh ON dh.ma_don_hang = i.ma_don_hang
+        WHERE dh.hinh_thuc_nhan_hang <> 'GIAO_HANG'
+    )
+    BEGIN
+        RAISERROR (N'Chỉ có thể xếp chuyến cho đơn hàng có hình thức GIAO_HANG.', 16, 1);
+        RETURN;
+    END
+END;
+GO
+
+-- ----------------------------------------------------------------------
+-- PHẦN 3: Trigger đồng bộ trang_thai_giao -> don_hang.trang_thai
+-- ----------------------------------------------------------------------
+-- Khi 1 dòng chi_tiet_chuyen_giao chuyển sang DA_GIAO, tự động chuyển
+-- don_hang.trang_thai sang COMPLETED (chỉ khi đơn đang CONFIRMED, không
+-- đụng tới đơn đã CANCELLED - dù thực tế đơn CANCELLED không nên còn nằm
+-- trong chuyến giao, đây là phòng hờ thêm).
+-- Khi GIAO_THAT_BAI: KHÔNG tự đổi trang_thai của đơn (đơn vẫn ở CONFIRMED
+-- để biết là cần xử lý lại - xếp vào chuyến khác hoặc liên hệ khách), chỉ
+-- lưu lại ghi_chu_giao để nhân viên biết lý do.
+CREATE TRIGGER trg_ctcg_dongbo_donhang
+ON chi_tiet_chuyen_giao
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SET XACT_ABORT ON;
+    IF TRIGGER_NESTLEVEL(OBJECT_ID('trg_ctcg_dongbo_donhang')) > 1 RETURN;
+
+    IF UPDATE(trang_thai_giao)
+    BEGIN
+        UPDATE dh
+        SET dh.trang_thai = 'COMPLETED'
+        FROM don_hang dh
+        INNER JOIN inserted i ON i.ma_don_hang = dh.ma_don_hang
+        INNER JOIN deleted d ON d.ma_don_hang = i.ma_don_hang
+        WHERE i.trang_thai_giao = 'DA_GIAO'
+          AND d.trang_thai_giao <> 'DA_GIAO'
+          AND dh.trang_thai = 'CONFIRMED';
+    END
+END;
+GO
+
+-- ----------------------------------------------------------------------
+-- (Gợi ý) Truy vấn kiểm tra đơn cần giao nhưng bị bỏ sót, chưa xếp chuyến
+-- ----------------------------------------------------------------------
+-- SELECT dh.*
+-- FROM don_hang dh
+-- WHERE dh.hinh_thuc_nhan_hang = 'GIAO_HANG'
+--   AND dh.trang_thai = 'CONFIRMED'
+--   AND NOT EXISTS (
+--       SELECT 1 FROM chi_tiet_chuyen_giao ctcg WHERE ctcg.ma_don_hang = dh.ma_don_hang
+--   );
