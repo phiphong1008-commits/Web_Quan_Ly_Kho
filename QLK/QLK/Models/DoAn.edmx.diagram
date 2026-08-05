@@ -42,6 +42,11 @@
         <AssociationConnector Association="DO_AN_QLKModel.FK_phieunhap_nguoidung" ManuallyRouted="false" />
         <AssociationConnector Association="DO_AN_QLKModel.FK_phieunhap_ncc" ManuallyRouted="false" />
         <AssociationConnector Association="DO_AN_QLKModel.thuoc_tinh_sku" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.chi_tiet_chuyen_giao" Width="1.5" PointX="11.25" PointY="22.125" />
+        <EntityTypeShape EntityType="DO_AN_QLKModel.chuyen_giao_hang" Width="1.5" PointX="3" PointY="23.375" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctcg_chuyen" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_ctcg_donhang" />
+        <AssociationConnector Association="DO_AN_QLKModel.FK_chuyengiaohang_taixe" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

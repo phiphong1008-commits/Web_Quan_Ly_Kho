@@ -3,8 +3,40 @@
   "WorkspaceRootPath": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\models\\quickorderinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\quickorderinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\doan.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\doan.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,19 +46,119 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "QuickOrderInputModel.cs",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\QuickOrderInputModel.cs",
+              "RelativeDocumentMoniker": "QLK\\Models\\QuickOrderInputModel.cs",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\QuickOrderInputModel.cs",
+              "RelativeToolTip": "QLK\\Models\\QuickOrderInputModel.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-04T04:39:00.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Create.cshtml",
+              "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Create.cshtml",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Create.cshtml",
+              "RelativeToolTip": "QLK\\Views\\DonHang\\Create.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAA4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T03:48:55.553Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Index.cshtml",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Index.cshtml",
+              "RelativeToolTip": "QLK\\Views\\DonHang\\Index.cshtml",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAIwA4BAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-04T03:39:45.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "DonHangController.cs",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
+              "RelativeDocumentMoniker": "QLK\\Controllers\\DonHangController.cs",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
+              "RelativeToolTip": "QLK\\Controllers\\DonHangController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T04:43:26.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "QLK\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "QLK\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-03T04:40:53.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "QLK\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "QLK\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-03T04:40:07.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DoAn.edmx.diagram",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx.diagram",
+              "RelativeDocumentMoniker": "QLK\\Models\\DoAn.edmx.diagram",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx.diagram",
+              "RelativeToolTip": "QLK\\Models\\DoAn.edmx.diagram",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-08-03T04:25:50.188Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DoAn.Context.cs",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.Context.cs",
+              "RelativeDocumentMoniker": "QLK\\Models\\DoAn.Context.cs",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.Context.cs",
+              "RelativeToolTip": "QLK\\Models\\DoAn.Context.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAA2wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-03T04:25:41.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "DoAn.edmx [Diagram1]",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx",
               "RelativeDocumentMoniker": "QLK\\Models\\DoAn.edmx",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx [Diagram1]",
               "RelativeToolTip": "QLK\\Models\\DoAn.edmx [Diagram1]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2026-07-27T03:38:11.802Z",
-              "EditorCaption": " [Diagram1]"
+              "WhenOpened": "2026-07-27T03:38:11.802Z"
             }
           ]
         }

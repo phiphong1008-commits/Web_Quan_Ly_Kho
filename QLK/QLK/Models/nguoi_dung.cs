@@ -21,6 +21,7 @@ namespace QLK.Models
             this.don_hang = new HashSet<don_hang>();
             this.phieu_kiem_ke = new HashSet<phieu_kiem_ke>();
             this.phieu_nhap_kho = new HashSet<phieu_nhap_kho>();
+            this.chuyen_giao_hang = new HashSet<chuyen_giao_hang>();
         }
     
         public int ma_nguoi_dung { get; set; }
@@ -40,5 +41,7 @@ namespace QLK.Models
         public virtual ICollection<phieu_kiem_ke> phieu_kiem_ke { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<phieu_nhap_kho> phieu_nhap_kho { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chuyen_giao_hang> chuyen_giao_hang { get; set; }
     }
 }

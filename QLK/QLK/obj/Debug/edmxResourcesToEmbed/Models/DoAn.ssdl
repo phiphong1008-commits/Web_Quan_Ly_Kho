@@ -15,6 +15,17 @@
     <Property Name="noi_dung_bao_cao_json" Type="nvarchar(max)" />
     <Property Name="ghi_chu" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="chi_tiet_chuyen_giao">
+    <Key>
+      <PropertyRef Name="ma_chuyen" />
+      <PropertyRef Name="ma_don_hang" />
+    </Key>
+    <Property Name="ma_chuyen" Type="int" Nullable="false" />
+    <Property Name="ma_don_hang" Type="int" Nullable="false" />
+    <Property Name="trang_thai_giao" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ghi_chu_giao" Type="nvarchar(max)" />
+    <Property Name="ngay_cap_nhat" Type="datetime2" Precision="7" />
+  </EntityType>
   <EntityType Name="chi_tiet_don_hang">
     <Key>
       <PropertyRef Name="ma_chi_tiet_don" />
@@ -50,6 +61,19 @@
     <Property Name="don_gia_nhap" Type="decimal" Precision="15" Scale="2" />
     <Property Name="thanh_tien" Type="decimal" Precision="26" Scale="2" StoreGeneratedPattern="Computed" />
   </EntityType>
+  <EntityType Name="chuyen_giao_hang">
+    <Key>
+      <PropertyRef Name="ma_chuyen" />
+    </Key>
+    <Property Name="ma_chuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma_code_chuyen" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ma_tai_xe" Type="int" Nullable="false" />
+    <Property Name="ngay_khoi_hanh" Type="datetime2" Precision="7" />
+    <Property Name="ngay_hoan_tat" Type="datetime2" Precision="7" />
+    <Property Name="trang_thai" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ghi_chu" Type="nvarchar(max)" />
+    <Property Name="ngay_tao" Type="datetime2" Precision="7" />
+  </EntityType>
   <EntityType Name="danh_muc">
     <Key>
       <PropertyRef Name="ma_danh_muc" />
@@ -82,6 +106,7 @@
     <Property Name="ly_do_huy" Type="nvarchar(max)" />
     <Property Name="ngay_tao" Type="datetime" />
     <Property Name="ngay_cap_nhat" Type="datetime" />
+    <Property Name="hinh_thuc_nhan_hang" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="khach_hang">
     <Key>
@@ -252,6 +277,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ctcg_chuyen">
+    <End Role="chuyen_giao_hang" Type="Self.chuyen_giao_hang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="chi_tiet_chuyen_giao" Type="Self.chi_tiet_chuyen_giao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chuyen_giao_hang">
+        <PropertyRef Name="ma_chuyen" />
+      </Principal>
+      <Dependent Role="chi_tiet_chuyen_giao">
+        <PropertyRef Name="ma_chuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctcg_donhang">
+    <End Role="don_hang" Type="Self.don_hang" Multiplicity="1" />
+    <End Role="chi_tiet_chuyen_giao" Type="Self.chi_tiet_chuyen_giao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="don_hang">
+        <PropertyRef Name="ma_don_hang" />
+      </Principal>
+      <Dependent Role="chi_tiet_chuyen_giao">
+        <PropertyRef Name="ma_don_hang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ctkk_phieu">
     <End Role="phieu_kiem_ke" Type="Self.phieu_kiem_ke" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -327,6 +378,18 @@
       </Principal>
       <Dependent Role="chi_tiet_don_hang">
         <PropertyRef Name="ma_sku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_chuyengiaohang_taixe">
+    <End Role="nguoi_dung" Type="Self.nguoi_dung" Multiplicity="1" />
+    <End Role="chuyen_giao_hang" Type="Self.chuyen_giao_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nguoi_dung">
+        <PropertyRef Name="ma_nguoi_dung" />
+      </Principal>
+      <Dependent Role="chuyen_giao_hang">
+        <PropertyRef Name="ma_tai_xe" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -554,9 +617,11 @@
   <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DO_AN_QLKModelStoreContainer">
     <EntitySet Name="bao_cao" EntityType="Self.bao_cao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chi_tiet_chuyen_giao" EntityType="Self.chi_tiet_chuyen_giao" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="chi_tiet_don_hang" EntityType="Self.chi_tiet_don_hang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="chi_tiet_kiem_ke" EntityType="Self.chi_tiet_kiem_ke" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="chi_tiet_phieu_nhap_kho" EntityType="Self.chi_tiet_phieu_nhap_kho" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="chuyen_giao_hang" EntityType="Self.chuyen_giao_hang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="danh_muc" EntityType="Self.danh_muc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="don_hang" EntityType="Self.don_hang" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="khach_hang" EntityType="Self.khach_hang" Schema="dbo" store:Type="Tables" />
@@ -575,6 +640,14 @@
     <AssociationSet Name="FK_baocao_nguoidung" Association="Self.FK_baocao_nguoidung">
       <End Role="nguoi_dung" EntitySet="nguoi_dung" />
       <End Role="bao_cao" EntitySet="bao_cao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctcg_chuyen" Association="Self.FK_ctcg_chuyen">
+      <End Role="chuyen_giao_hang" EntitySet="chuyen_giao_hang" />
+      <End Role="chi_tiet_chuyen_giao" EntitySet="chi_tiet_chuyen_giao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctcg_donhang" Association="Self.FK_ctcg_donhang">
+      <End Role="don_hang" EntitySet="don_hang" />
+      <End Role="chi_tiet_chuyen_giao" EntitySet="chi_tiet_chuyen_giao" />
     </AssociationSet>
     <AssociationSet Name="FK_ctkk_phieu" Association="Self.FK_ctkk_phieu">
       <End Role="phieu_kiem_ke" EntitySet="phieu_kiem_ke" />
@@ -599,6 +672,10 @@
     <AssociationSet Name="FK_cthd_sku" Association="Self.FK_cthd_sku">
       <End Role="san_pham_sku" EntitySet="san_pham_sku" />
       <End Role="chi_tiet_don_hang" EntitySet="chi_tiet_don_hang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_chuyengiaohang_taixe" Association="Self.FK_chuyengiaohang_taixe">
+      <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+      <End Role="chuyen_giao_hang" EntitySet="chuyen_giao_hang" />
     </AssociationSet>
     <AssociationSet Name="FK_donhang_khachhang" Association="Self.FK_donhang_khachhang">
       <End Role="khach_hang" EntitySet="khach_hang" />

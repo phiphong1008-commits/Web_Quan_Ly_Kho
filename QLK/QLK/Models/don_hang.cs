@@ -18,6 +18,7 @@ namespace QLK.Models
         public don_hang()
         {
             this.chi_tiet_don_hang = new HashSet<chi_tiet_don_hang>();
+            this.chi_tiet_chuyen_giao = new HashSet<chi_tiet_chuyen_giao>();
         }
     
         public int ma_don_hang { get; set; }
@@ -37,11 +38,14 @@ namespace QLK.Models
         public string ly_do_huy { get; set; }
         public Nullable<System.DateTime> ngay_tao { get; set; }
         public Nullable<System.DateTime> ngay_cap_nhat { get; set; }
+        public string hinh_thuc_nhan_hang { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<chi_tiet_don_hang> chi_tiet_don_hang { get; set; }
         public virtual khach_hang khach_hang { get; set; }
         public virtual khuyen_mai khuyen_mai { get; set; }
         public virtual nguoi_dung nguoi_dung { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chi_tiet_chuyen_giao> chi_tiet_chuyen_giao { get; set; }
     }
 }

@@ -94,6 +94,8 @@
     <NavigationProperty Name="khach_hang" Relationship="Self.FK_donhang_khachhang" FromRole="don_hang" ToRole="khach_hang" />
     <NavigationProperty Name="khuyen_mai" Relationship="Self.FK_donhang_khuyenmai" FromRole="don_hang" ToRole="khuyen_mai" />
     <NavigationProperty Name="nguoi_dung" Relationship="Self.FK_donhang_nguoidung" FromRole="don_hang" ToRole="nguoi_dung" />
+    <Property Name="hinh_thuc_nhan_hang" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="chi_tiet_chuyen_giao" Relationship="DO_AN_QLKModel.FK_ctcg_donhang" FromRole="don_hang" ToRole="chi_tiet_chuyen_giao" />
   </EntityType>
   <EntityType Name="khach_hang">
     <Key>
@@ -177,6 +179,7 @@
     <NavigationProperty Name="don_hang" Relationship="Self.FK_donhang_nguoidung" FromRole="nguoi_dung" ToRole="don_hang" />
     <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_pkk_nguoidung" FromRole="nguoi_dung" ToRole="phieu_kiem_ke" />
     <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_phieunhap_nguoidung" FromRole="nguoi_dung" ToRole="phieu_nhap_kho" />
+    <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="nguoi_dung" ToRole="chuyen_giao_hang" />
   </EntityType>
   <EntityType Name="nha_cung_cap">
     <Key>
@@ -654,6 +657,20 @@
       <Parameter Name="ghi_chu" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="chi_tiet_chuyen_giao" EntityType="DO_AN_QLKModel.chi_tiet_chuyen_giao" />
+    <EntitySet Name="chuyen_giao_hang" EntityType="DO_AN_QLKModel.chuyen_giao_hang" />
+    <AssociationSet Name="FK_ctcg_chuyen" Association="DO_AN_QLKModel.FK_ctcg_chuyen">
+      <End Role="chuyen_giao_hang" EntitySet="chuyen_giao_hang" />
+      <End Role="chi_tiet_chuyen_giao" EntitySet="chi_tiet_chuyen_giao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ctcg_donhang" Association="DO_AN_QLKModel.FK_ctcg_donhang">
+      <End Role="don_hang" EntitySet="don_hang" />
+      <End Role="chi_tiet_chuyen_giao" EntitySet="chi_tiet_chuyen_giao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_chuyengiaohang_taixe" Association="DO_AN_QLKModel.FK_chuyengiaohang_taixe">
+      <End Role="nguoi_dung" EntitySet="nguoi_dung" />
+      <End Role="chuyen_giao_hang" EntitySet="chuyen_giao_hang" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_ApDungKhuyenMai_Result">
     <Property Type="Int32" Name="ma_don_hang" Nullable="false" />
@@ -695,4 +712,70 @@
     <Property Type="String" Name="ma_code_sku" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="ton_kho_sau_khi_them" Nullable="false" />
   </ComplexType>
+  <EntityType Name="chi_tiet_chuyen_giao">
+    <Key>
+      <PropertyRef Name="ma_chuyen" />
+      <PropertyRef Name="ma_don_hang" />
+    </Key>
+    <Property Name="ma_chuyen" Type="Int32" Nullable="false" />
+    <Property Name="ma_don_hang" Type="Int32" Nullable="false" />
+    <Property Name="trang_thai_giao" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ghi_chu_giao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ngay_cap_nhat" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_ctcg_chuyen" FromRole="chi_tiet_chuyen_giao" ToRole="chuyen_giao_hang" />
+    <NavigationProperty Name="don_hang" Relationship="DO_AN_QLKModel.FK_ctcg_donhang" FromRole="chi_tiet_chuyen_giao" ToRole="don_hang" />
+  </EntityType>
+  <EntityType Name="chuyen_giao_hang">
+    <Key>
+      <PropertyRef Name="ma_chuyen" />
+    </Key>
+    <Property Name="ma_chuyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ma_code_chuyen" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="ma_tai_xe" Type="Int32" Nullable="false" />
+    <Property Name="ngay_khoi_hanh" Type="DateTime" Precision="7" />
+    <Property Name="ngay_hoan_tat" Type="DateTime" Precision="7" />
+    <Property Name="trang_thai" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ghi_chu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ngay_tao" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="chi_tiet_chuyen_giao" Relationship="DO_AN_QLKModel.FK_ctcg_chuyen" FromRole="chuyen_giao_hang" ToRole="chi_tiet_chuyen_giao" />
+    <NavigationProperty Name="nguoi_dung" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="chuyen_giao_hang" ToRole="nguoi_dung" />
+  </EntityType>
+  <Association Name="FK_ctcg_chuyen">
+    <End Type="DO_AN_QLKModel.chuyen_giao_hang" Role="chuyen_giao_hang" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DO_AN_QLKModel.chi_tiet_chuyen_giao" Role="chi_tiet_chuyen_giao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chuyen_giao_hang">
+        <PropertyRef Name="ma_chuyen" />
+      </Principal>
+      <Dependent Role="chi_tiet_chuyen_giao">
+        <PropertyRef Name="ma_chuyen" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ctcg_donhang">
+    <End Type="DO_AN_QLKModel.don_hang" Role="don_hang" Multiplicity="1" />
+    <End Type="DO_AN_QLKModel.chi_tiet_chuyen_giao" Role="chi_tiet_chuyen_giao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="don_hang">
+        <PropertyRef Name="ma_don_hang" />
+      </Principal>
+      <Dependent Role="chi_tiet_chuyen_giao">
+        <PropertyRef Name="ma_don_hang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_chuyengiaohang_taixe">
+    <End Type="DO_AN_QLKModel.nguoi_dung" Role="nguoi_dung" Multiplicity="1" />
+    <End Type="DO_AN_QLKModel.chuyen_giao_hang" Role="chuyen_giao_hang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="nguoi_dung">
+        <PropertyRef Name="ma_nguoi_dung" />
+      </Principal>
+      <Dependent Role="chuyen_giao_hang">
+        <PropertyRef Name="ma_tai_xe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

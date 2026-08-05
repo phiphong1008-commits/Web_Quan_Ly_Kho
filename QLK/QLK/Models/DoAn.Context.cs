@@ -45,6 +45,8 @@ namespace QLK.Models
         public virtual DbSet<san_pham_sku> san_pham_sku { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<thuoc_tinh> thuoc_tinh { get; set; }
+        public virtual DbSet<chi_tiet_chuyen_giao> chi_tiet_chuyen_giao { get; set; }
+        public virtual DbSet<chuyen_giao_hang> chuyen_giao_hang { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

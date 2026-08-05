@@ -1,0 +1,271 @@
+﻿@model IEnumerable<QLK.Models.don_hang>
+
+@{
+    ViewBag.Title = "Danh sách đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 py-3">
+    <!-- HEADER MÀN HÌNH -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h3 class="fw-bold text-uppercase text-primary m-0">
+                <i class="fa-solid fa-boxes-packing me-2"></i>Quản Lý Đơn Hàng
+            </h3>
+            <small class="text-muted">Hệ thống theo dõi & Điều phối vận đơn kho hàng (TKELog Standard)</small>
+        </div>
+
+        <!-- CÔNG CỤ XỬ LÝ & NÚT TẠO NHANH -->
+        <div class="d-flex gap-2">
+            <!-- NÚT TẠO NHANH ĐƠN HÀNG MỚI BỔ SUNG -->
+            <button type="button" class="btn btn-primary fw-bold" onclick="openQuickCreateModal()">
+                <i class="fa-solid fa-bolt me-1"></i> Tạo nhanh đơn hàng
+            </button>
+
+            <div class="btn-group">
+                <button class="btn btn-outline-success dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-file-excel me-1"></i> Xử lý / Xuất dữ liệu
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li><a class="dropdown-item text-success" href="#"><i class="fa-solid fa-file-excel me-2"></i>Kết xuất Excel</a></li>
+                    <li><a class="dropdown-item text-secondary" href="#"><i class="fa-solid fa-file-csv me-2"></i>Kết xuất CSV</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- BẢNG DANH SÁCH TỔNG QUAN -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle mb-0">
+                    <thead class="table-primary text-nowrap">
+                        <tr>
+                            <th class="text-center py-2" style="width: 50px;">STT</th>
+                            <th class="text-center py-2">Mã Đơn</th>
+                            <th class="py-2">Khách Hàng</th>
+                            <th class="text-center py-2">Ngày Đặt</th>
+                            <th class="text-end py-2">Thành Tiền</th>
+                            <th class="text-center py-2">Trạng Thái</th>
+                            <th class="text-center py-2" style="width: 140px;">Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            int stt = 1;
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center text-muted">@(stt++)</td>
+                                    <td class="text-center fw-bold text-primary">#@item.ma_code_don_hang</td>
+                                    <td>@(item.khach_hang != null ? item.khach_hang.ten_khach_hang : "Khách vãng lai")</td>
+                                    <td class="text-center">@item.ngay_dat_hang.Value.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-end text-danger fw-bold">@item.thanh_tien.ToString("N0") đ</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-primary">@item.trang_thai</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="@Url.Action("Details", new { id = item.ma_don_hang })" class="btn btn-outline-secondary btn-sm" title="Xem chi tiết">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL TẠO NHANH ĐƠN HÀNG (QUICK CREATE MODAL) -->
+<div class="modal fade" id="quickCreateModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title fw-bold"><i class="fa-solid fa-bolt me-2"></i>Tạo Nhanh Đơn Hàng Mới</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="quickCreateForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Mã Code Đơn Hàng <span class="text-danger">*</span></label>
+                            <input type="text" id="qc_ma_code" class="form-control form-control-sm" required placeholder="Tự động sinh nếu để trống" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Khách Hàng</label>
+                            @Html.DropDownList("ma_khach_hang", (SelectList)ViewBag.KhachHangList, "-- Chọn khách hàng --", new { @id = "qc_khach_hang", @class = "form-select form-select-sm" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Phí Vận Chuyển (đ)</label>
+                            <input type="number" id="qc_phi_ship" class="form-control form-control-sm" value="0" min="0" onchange="calculateQuickTotal()" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Tiền Giảm Giá (đ)</label>
+                            <input type="number" id="qc_giam_gia" class="form-control form-control-sm" value="0" min="0" onchange="calculateQuickTotal()" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Ghi Chú Đơn Hàng</label>
+                            <input type="text" id="qc_ghi_chu" class="form-control form-control-sm" placeholder="Ghi chú giao hàng..." />
+                        </div>
+                    </div>
+
+                    <hr class="my-3" />
+
+                    <!-- BẢNG CHỌN NHANH SAN PHAM / SKU -->
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="fw-bold m-0"><i class="fa-solid fa-list-check me-1"></i>Chi Tiết SKU Chọn Bán</h6>
+                        <button type="button" class="btn btn-outline-primary btn-sm fw-bold" onclick="addQuickSkuRow()">
+                            <i class="fa-solid fa-plus me-1"></i>Thêm SKU
+                        </button>
+                    </div>
+
+                    <table class="table table-bordered table-sm align-middle" id="quickSkuTable">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Chọn SKU Sản Phẩm</th>
+                                <th style="width: 120px;">Số Lượng</th>
+                                <th style="width: 150px;">Đơn Giá (đ)</th>
+                                <th style="width: 150px;">Thành Tiền</th>
+                                <th style="width: 40px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="quickSkuTbody">
+                            <!-- Các dòng SKU sẽ thêm dynamic ở đây -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold">Tổng Tiền Hàng:</td>
+                                <td class="text-end fw-bold text-danger" id="lbl_tong_tien_hang">0 đ</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer bg-light border-0">
+                <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                <button type="button" class="btn btn-primary px-4 fw-bold" onclick="submitQuickOrder()">
+                    <i class="fa-solid fa-save me-1"></i> Lưu & Tạo Đơn
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 3. PHẦN JAVASCRIPT (DÁN ĐOẠN CODE BẠN CUNG CẤP VÀO ĐÂY) -->
+@section Scripts {
+    <script>
+        // Mở Modal Tạo Nhanh
+        function openQuickCreateModal() {
+            $('#quickCreateForm')[0].reset();
+            $('#quickSkuTbody').empty();
+            $('#qc_ma_code').val('DH' + new Date().getTime().toString().substr(4));
+            addQuickSkuRow();
+            var modal = new bootstrap.Modal(document.getElementById('quickCreateModal'));
+            modal.show();
+        }
+
+        // Thêm Dòng Chọn SKU
+        function addQuickSkuRow() {
+            var skuOptions = `@Html.Raw(ViewBag.SkuOptionsJavaScript)`;
+            var rowId = new Date().getTime();
+            var html = `
+                <tr id="row_${rowId}">
+                    <td>
+                        <select class="form-select form-select-sm sku-select" onchange="onSkuChange('${rowId}')" required>
+                            ${skuOptions}
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control form-control-sm sku-qty" value="1" min="1" onchange="calculateQuickTotal()" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control form-control-sm sku-price" value="0" min="0" onchange="calculateQuickTotal()" />
+                    </td>
+                    <td class="text-end fw-bold sku-subtotal">0 đ</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-link text-danger p-0" onclick="$('#row_${rowId}').remove(); calculateQuickTotal();">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            $('#quickSkuTbody').append(html);
+        }
+
+        // Tự động lấy giá niêm yết khi chọn SKU
+        function onSkuChange(rowId) {
+            var selectedOption = $(`#row_${rowId} .sku-select option:selected`);
+            var price = selectedOption.data('price') || 0;
+            $(`#row_${rowId} .sku-price`).val(price);
+            calculateQuickTotal();
+        }
+
+        // Tính Tổng Tiền Hàng
+        function calculateQuickTotal() {
+            var totalGoods = 0;
+            $('#quickSkuTbody tr').each(function () {
+                var qty = parseFloat($(this).find('.sku-qty').val()) || 0;
+                var price = parseFloat($(this).find('.sku-price').val()) || 0;
+                var subtotal = qty * price;
+                $(this).find('.sku-subtotal').text(subtotal.toLocaleString('vi-VN') + ' đ');
+                totalGoods += subtotal;
+            });
+
+            $('#lbl_tong_tien_hang').text(totalGoods.toLocaleString('vi-VN') + ' đ');
+        }
+
+        // Gửi dữ liệu tạo đơn lên Server (Gọi Controller)
+        function submitQuickOrder() {
+            var skuList = [];
+            var isValid = true;
+
+            $('#quickSkuTbody tr').each(function () {
+                var skuId = $(this).find('.sku-select').val();
+                var qty = $(this).find('.sku-qty').val();
+                var price = $(this).find('.sku-price').val();
+
+                if (!skuId) { isValid = false; return false; }
+
+                skuList.push({
+                    ma_sku: parseInt(skuId),
+                    so_luong: parseInt(qty),
+                    don_gia: parseFloat(price)
+                });
+            });
+
+            if (!isValid || skuList.length === 0) {
+                alert('Vui lòng chọn ít nhất 1 SKU sản phẩm hợp lệ!');
+                return;
+            }
+
+            var postData = {
+                ma_code_don_hang: $('#qc_ma_code').val(),
+                ma_khach_hang: $('#qc_khach_hang').val() || null,
+                phi_van_chuyen: parseFloat($('#qc_phi_ship').val()) || 0,
+                tien_giam_gia: parseFloat($('#qc_giam_gia').val()) || 0,
+                ghi_chu: $('#qc_ghi_chu').val(),
+                chi_tiet: skuList
+            };
+
+            $.ajax({
+                url: '/DonHang/QuickCreate',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(postData),
+                success: function (res) {
+                    if (res.success) {
+                        location.reload();
+                    } else {
+                        alert('Lỗi: ' + res.message);
+                    }
+                },
+                error: function () {
+                    alert('Có lỗi hệ thống xảy ra khi tạo đơn!');
+                }
+            });
+        }
+    </script>
+}
