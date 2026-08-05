@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\models\\quickorderinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\quickorderinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\quickorderinputmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -46,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "QuickOrderInputModel.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\QuickOrderInputModel.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\QuickOrderInputModel.cs",
@@ -58,12 +58,11 @@
               "RelativeToolTip": "QLK\\Models\\QuickOrderInputModel.cs",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAwBkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-04T04:39:00.376Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-04T04:39:00.376Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Create.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Create.cshtml",
@@ -76,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Index.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Index.cshtml",
@@ -84,18 +83,17 @@
               "RelativeToolTip": "QLK\\Views\\DonHang\\Index.cshtml",
               "ViewState": "AgIAAPYAAAAAAAAAAAAIwA4BAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-04T03:39:45.919Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-04T03:39:45.919Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "DonHangController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\DonHangController.cs",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "QLK\\Controllers\\DonHangController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAgwJoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T04:43:26.634Z",
               "EditorCaption": ""
@@ -122,8 +120,7 @@
               "RelativeToolTip": "QLK\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-03T04:40:07.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T04:40:07.511Z"
             },
             {
               "$type": "Document",
