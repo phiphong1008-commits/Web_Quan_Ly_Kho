@@ -81,3 +81,12 @@ C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\Microsoft.CodeDom.Provider
 C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\obj\Debug\QLK.csproj.Up2Date
 C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\obj\Debug\QLK.dll
 C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\obj\Debug\QLK.pdb
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\BCrypt-Net-Next.dll
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Buffers.dll
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Memory.dll
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Numerics.Vectors.dll
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Buffers.xml
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Memory.xml
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Numerics.Vectors.xml
+C:\HOCTAP\DO_AN_QUANLYKHO\Web_Quan_Ly_Kho\QLK\QLK\bin\System.Runtime.CompilerServices.Unsafe.xml

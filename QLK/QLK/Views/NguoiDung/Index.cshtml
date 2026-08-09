@@ -1,0 +1,219 @@
+﻿@model IEnumerable<QLK.Models.nguoi_dung>
+@{
+    ViewData["Title"] = "Quản lý Tài khoản & Phân quyền";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2><i class="fa-solid fa-users-gear me-2"></i> Quản lý Tài khoản & Phân quyền</h2>
+        <button class="btn btn-primary" onclick="openCreateModal()"><i class="fa-solid fa-plus"></i> Thêm tài khoản mới</button>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-hover table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>STT</th>
+                        <th>Mã ND</th>
+                        <th>Tên Đăng Nhập</th>
+                        <th>Họ Và Tên</th>
+                        <th>Vai Trò (Phân quyền)</th>
+                        <th>Trạng Thái</th>
+                        <th>Ngày Tạo</th>
+                        <th class="text-center">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int stt = 1; }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@(stt++)</td>
+                            <td>ND-@item.ma_nguoi_dung</td>
+                            <td class="fw-bold">@item.ten_dang_nhap</td>
+                            <td>@item.ho_ten</td>
+                            <td>
+                                @switch (item.vai_tro)
+                                {
+                                    case "CHU":<span class="badge bg-danger">Chủ Hệ Thống</span>; break;
+                                    case "QUAN_LY": <span class="badge bg-warning text-dark">Quản Lý</span>; break;
+                                    case "NHAN_VIEN_KHO": <span class="badge bg-info text-dark">Nhân Viên Kho</span>; break;
+                                    case "TAI_XE": <span class="badge bg-primary">Tài Xế</span>; break;
+                                    default: <span class="badge bg-secondary">Bán Hàng</span>; break;
+                                }
+                            </td>
+                            <td>
+                                @if (item.trang_thai_hoat_dong == true)
+                                {
+                                    <span class="badge bg-success"><i class="fa-solid fa-check me-1"></i>Hoạt động</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary"><i class="fa-solid fa-lock me-1"></i>Đã khóa</span>
+                                }
+                            </td>
+                            <td>@item.ngay_tao?.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td class="text-center">
+                                <button class="btn btn-sm btn-outline-warning me-1" onclick="openEditModal(@item.ma_nguoi_dung)"><i class="fa-solid fa-pen-to-square"></i> Sửa</button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="deleteUser(@item.ma_nguoi_dung)"><i class="fa-solid fa-trash"></i> Xóa</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal CRUD User -->
+<div class="modal fade" id="userModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Tài khoản</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm">
+                    <input type="hidden" id="MaNguoiDung" value="0" />
+
+                    <div class="mb-3">
+                        <label class="form-label">Tên Đăng Nhập</label>
+                        <input type="text" id="TenDangNhap" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Họ và Tên</label>
+                        <input type="text" id="HoTen" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" id="lblMatKhau">Mật khẩu</label>
+                        <input type="password" id="MatKhau" class="form-control" />
+                        <small class="text-muted d-none" id="noteMatKhau">Để trống nếu không muốn đổi mật khẩu</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Vai trò Phân quyền</label>
+                        <select id="VaiTro" class="form-select">
+                            <option value="BAN_HANG">BÁN HÀNG</option>
+                            <option value="NHAN_VIEN_KHO">NHÂN VIÊN KHO</option>
+                            <option value="TAI_XE">TÀI XẾ</option>
+                            <option value="QUAN_LY">QUẢN LÝ</option>
+                            <option value="CHU">CHỦ HỆ THỐNG</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 form-check" id="divTrangThai">
+                        <input type="checkbox" class="form-check-input" id="TrangThaiHoatDong" checked />
+                        <label class="form-check-label" for="TrangThaiHoatDong">Đang làm việc (Hoạt động)</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="saveUser()">Lưu thay đổi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('userModal'));
+
+        function openCreateModal() {
+            document.getElementById('userForm').reset();
+            document.getElementById('MaNguoiDung').value = 0;
+            document.getElementById('TenDangNhap').readOnly = false;
+            document.getElementById('modalTitle').innerText = "Thêm người dùng mới";
+            document.getElementById('noteMatKhau').classList.add('d-none');
+            document.getElementById('divTrangThai').classList.add('d-none');
+            myModal.show();
+        }
+
+        function openEditModal(id) {
+            fetch('/NguoiDung/GetById/' + id)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        document.getElementById('MaNguoiDung').value = res.data.maNguoiDung;
+                        document.getElementById('TenDangNhap').value = res.data.tenDangNhap;
+                        document.getElementById('TenDangNhap').readOnly = true;
+                        document.getElementById('HoTen').value = res.data.hoTen;
+                        document.getElementById('VaiTro').value = res.data.vaiTro;
+                        document.getElementById('TrangThaiHoatDong').checked = res.data.trangThaiHoatDong;
+
+                        document.getElementById('modalTitle').innerText = "Hiệu chỉnh tài khoản";
+                        document.getElementById('noteMatKhau').classList.remove('d-none');
+                        document.getElementById('divTrangThai').classList.remove('d-none');
+                        myModal.show();
+                    } else {
+                        Swal.fire('Lỗi', res.message, 'error');
+                    }
+                });
+        }
+
+        function saveUser() {
+            var id = parseInt(document.getElementById('MaNguoiDung').value);
+            var isCreate = id === 0;
+
+            var payload = {
+                MaNguoiDung: id,
+                TenDangNhap: document.getElementById('TenDangNhap').value,
+                HoTen: document.getElementById('HoTen').value,
+                VaiTro: document.getElementById('VaiTro').value,
+                TrangThaiHoatDong: document.getElementById('TrangThaiHoatDong').checked
+            };
+
+            var url = isCreate ? '/NguoiDung/Create' : '/NguoiDung/Edit';
+
+            if (isCreate) {
+                payload.MatKhau = document.getElementById('MatKhau').value;
+            } else {
+                payload.MatKhauMoi = document.getElementById('MatKhau').value;
+            }
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    Swal.fire('Thành công', res.message, 'success').then(() => location.reload());
+                } else {
+                    Swal.fire('Thất bại', res.message, 'error');
+                }
+            });
+        }
+
+        function deleteUser(id) {
+            Swal.fire({
+                title: 'Bạn chắc chắn muốn xóa?',
+                text: "Tài khoản sẽ bị gỡ khỏi hệ thống vĩnh viễn!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Đồng ý Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fetch('/NguoiDung/Delete/' + id, { method: 'POST' })
+                        .then(res => res.json())
+                        .then(res => {
+                            if (res.success) {
+                                Swal.fire('Đã xóa!', res.message, 'success').then(() => location.reload());
+                            } else {
+                                Swal.fire('Lỗi', res.message, 'error');
+                            }
+                        });
+                }
+            });
+        }
+    </script>
+}
