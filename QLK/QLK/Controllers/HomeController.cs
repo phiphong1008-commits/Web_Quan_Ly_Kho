@@ -1,28 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace QLK.Controllers
 {
+    [Authorize] // Bắt buộc phải đăng nhập mới được vào trang này
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            // Lấy thông tin user từ Session để hiển thị ra màn hình
+            ViewBag.HoTen = Session["HoTen"]?.ToString() ?? User.Identity.Name;
+            ViewBag.VaiTro = Session["VaiTro"]?.ToString() ?? "N/A";
 
             return View();
         }

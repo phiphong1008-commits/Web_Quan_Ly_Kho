@@ -146,6 +146,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Models\bao_cao.cs">
       <DependentUpon>DoAn.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChiChoPhepAttribute.cs" />
     <Compile Include="Models\chi_tiet_chuyen_giao.cs">
       <DependentUpon>DoAn.tt</DependentUpon>
     </Compile>
@@ -330,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

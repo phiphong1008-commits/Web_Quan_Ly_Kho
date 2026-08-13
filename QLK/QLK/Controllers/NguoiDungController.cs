@@ -1,35 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using QLK.Models;
 
 namespace QLK.Controllers
 {
-    public class NguoiDungController : Controller
+    // Thay "KiemTraQuyenQuanTri()" lặp lại 7 lần bằng 1 attribute áp cho
+    // TOÀN BỘ controller - mọi action bên dưới đều tự động chỉ cho CHU/QUAN_LY vào,
+    // action mới thêm sau này cũng tự động được bảo vệ mà không cần nhớ dán lại.
+    [ChiChoPhep("CHU", "QUAN_LY")]
+    public class NguoiDungController : BaseController
     {
         private DO_AN_QLKEntities db = new DO_AN_QLKEntities();
 
-        // Kiểm tra quyền Quản trị (Chỉ CHU hoặc QUAN_LY mới được truy cập quản lý người dùng)
-        private bool KiemTraQuyenQuanTri()
-        {
-            var vaiTro = Session["VaiTro"] as string;
-            return vaiTro == "CHU" || vaiTro == "QUAN_LY";
-        }
+        // Người đang đăng nhập có phải CHU không - dùng để chặn leo thang đặc quyền.
+        // Đây là kiểm tra RIÊNG của controller này (không phải "vào được hay không" mà
+        // là "được làm hành động cụ thể này hay không"), nên vẫn giữ tại đây, không đưa
+        // lên attribute/BaseController vì attribute chỉ xử lý được rule chung, cố định.
+        private bool NguoiHienTaiLaChu() => VaiTroHienTai == "CHU";
 
         // GET: NguoiDung
         public ActionResult Index()
         {
-            if (!KiemTraQuyenQuanTri())
-            {
-                TempData["ErrorMessage"] = "Bạn không có quyền truy cập vào chức năng quản lý tài khoản.";
-                return RedirectToAction("Index", "Home");
-            }
-
             var dsNguoiDung = db.nguoi_dung.OrderByDescending(u => u.ngay_tao).ToList();
             return View(dsNguoiDung);
         }
@@ -37,19 +31,12 @@ namespace QLK.Controllers
         // GET: NguoiDung/Details/5
         public ActionResult Details(int? id)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
             nguoi_dung nguoiDung = db.nguoi_dung.Find(id);
             if (nguoiDung == null)
-            {
                 return HttpNotFound();
-            }
 
             return View(nguoiDung);
         }
@@ -57,9 +44,6 @@ namespace QLK.Controllers
         // GET: NguoiDung/Create
         public ActionResult Create()
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             ViewBag.DanhSachVaiTro = SelectListVaiTro();
             return View();
         }
@@ -69,9 +53,6 @@ namespace QLK.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ten_dang_nhap,ho_ten,vai_tro,trang_thai_hoat_dong")] nguoi_dung nguoiDung, string mat_khau)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             if (string.IsNullOrWhiteSpace(mat_khau) || mat_khau.Length < 6)
             {
                 ModelState.AddModelError("", "Mật khẩu không được để trống và phải từ 6 ký tự trở lên.");
@@ -82,9 +63,19 @@ namespace QLK.Controllers
                 ModelState.AddModelError("ten_dang_nhap", "Tên đăng nhập này đã tồn tại.");
             }
 
+            // Chặn leo thang đặc quyền: chỉ CHU mới được tạo tài khoản CHU khác
+            if (nguoiDung.vai_tro == "CHU" && !NguoiHienTaiLaChu())
+            {
+                ModelState.AddModelError("vai_tro", "Chỉ có Chủ hệ thống mới được tạo tài khoản cấp Chủ.");
+            }
+
             if (ModelState.IsValid)
             {
                 nguoiDung.mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(mat_khau);
+
+                // EF không tự áp DEFAULT của SQL khi Add() - set tường minh, tránh lưu NULL
+                nguoiDung.trang_thai_hoat_dong = nguoiDung.trang_thai_hoat_dong ?? true;
+
                 nguoiDung.ngay_tao = DateTime.Now;
                 nguoiDung.ngay_cap_nhat = DateTime.Now;
 
@@ -102,19 +93,12 @@ namespace QLK.Controllers
         // GET: NguoiDung/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
             nguoi_dung nguoiDung = db.nguoi_dung.Find(id);
             if (nguoiDung == null)
-            {
                 return HttpNotFound();
-            }
 
             ViewBag.DanhSachVaiTro = SelectListVaiTro(nguoiDung.vai_tro);
             return View(nguoiDung);
@@ -125,24 +109,36 @@ namespace QLK.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ma_nguoi_dung,ten_dang_nhap,ho_ten,vai_tro,trang_thai_hoat_dong,ngay_tao")] nguoi_dung nguoiDung, string mat_khau_moi)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
+            var userInDb = db.nguoi_dung.Find(nguoiDung.ma_nguoi_dung);
+            if (userInDb == null)
+                return HttpNotFound();
+
+            // Chặn leo thang đặc quyền: chỉ CHU mới được nâng ai đó lên CHU,
+            // hoặc sửa thông tin của 1 tài khoản CHU đang có
+            bool dangDoiThanhChu = nguoiDung.vai_tro == "CHU" && userInDb.vai_tro != "CHU";
+            bool dangSuaTaiKhoanChu = userInDb.vai_tro == "CHU";
+            if ((dangDoiThanhChu || dangSuaTaiKhoanChu) && !NguoiHienTaiLaChu())
+            {
+                ModelState.AddModelError("vai_tro", "Chỉ có Chủ hệ thống mới được cấp/sửa quyền Chủ.");
+            }
+
+            // Không cho hạ cấp CHU duy nhất còn lại
+            if (userInDb.vai_tro == "CHU" && nguoiDung.vai_tro != "CHU")
+            {
+                int soLuongChuConLai = db.nguoi_dung.Count(u => u.vai_tro == "CHU" && u.ma_nguoi_dung != userInDb.ma_nguoi_dung);
+                if (soLuongChuConLai == 0)
+                {
+                    ModelState.AddModelError("vai_tro", "Không thể hạ cấp - đây là tài khoản Chủ hệ thống duy nhất còn lại.");
+                }
+            }
 
             if (ModelState.IsValid)
             {
-                var userInDb = db.nguoi_dung.Find(nguoiDung.ma_nguoi_dung);
-                if (userInDb == null)
-                {
-                    return HttpNotFound();
-                }
-
-                // Cập nhật thông tin cá nhân & vai trò
                 userInDb.ho_ten = nguoiDung.ho_ten;
                 userInDb.vai_tro = nguoiDung.vai_tro;
-                userInDb.trang_thai_hoat_dong = nguoiDung.trang_thai_hoat_dong;
+                userInDb.trang_thai_hoat_dong = nguoiDung.trang_thai_hoat_dong ?? true;
                 userInDb.ngay_cap_nhat = DateTime.Now;
 
-                // Đổi mật khẩu nếu người dùng có nhập mật khẩu mới
                 if (!string.IsNullOrWhiteSpace(mat_khau_moi))
                 {
                     if (mat_khau_moi.Length < 6)
@@ -165,56 +161,55 @@ namespace QLK.Controllers
             return View(nguoiDung);
         }
 
-        // GET: NguoiDung/Delete/5
+        // GET: NguoiDung/Delete/5  (thực chất là màn hình xác nhận KHÓA tài khoản)
         public ActionResult Delete(int? id)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             if (id == null)
-            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
             nguoi_dung nguoiDung = db.nguoi_dung.Find(id);
             if (nguoiDung == null)
-            {
                 return HttpNotFound();
-            }
 
             return View(nguoiDung);
         }
 
         // POST: NguoiDung/Delete/5
+        // Soft-delete: khóa tài khoản (trang_thai_hoat_dong = false) thay vì xóa cứng,
+        // vì nguoi_dung bị nhiều bảng khác tham chiếu (lịch sử đơn hàng, chuyến giao hàng...)
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (!KiemTraQuyenQuanTri())
-                return RedirectToAction("Index", "Home");
-
             nguoi_dung nguoiDung = db.nguoi_dung.Find(id);
             if (nguoiDung == null)
-            {
                 return HttpNotFound();
-            }
 
-            // Ràng buộc nghiệp vụ: Không cho phép tự xóa chính mình
-            var currentUserId = Session["MaNguoiDung"] as int?;
-            if (currentUserId.HasValue && currentUserId.Value == id)
+            if (MaNguoiDungHienTai == id)
             {
-                TempData["ErrorMessage"] = "Bạn không thể xóa tài khoản đang đăng nhập!";
+                TempData["ErrorMessage"] = "Bạn không thể khóa tài khoản đang đăng nhập!";
                 return RedirectToAction("Index");
             }
 
-            db.nguoi_dung.Remove(nguoiDung);
+            if (nguoiDung.vai_tro == "CHU")
+            {
+                int soLuongChuConLai = db.nguoi_dung.Count(u => u.vai_tro == "CHU" && u.ma_nguoi_dung != id);
+                if (soLuongChuConLai == 0)
+                {
+                    TempData["ErrorMessage"] = "Không thể khóa - đây là tài khoản Chủ hệ thống duy nhất còn lại.";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            nguoiDung.trang_thai_hoat_dong = false;
+            nguoiDung.ngay_cap_nhat = DateTime.Now;
+            db.Entry(nguoiDung).State = EntityState.Modified;
             db.SaveChanges();
 
-            TempData["SuccessMessage"] = "Xóa người dùng thành công!";
+            TempData["SuccessMessage"] = "Đã khóa tài khoản người dùng!";
             return RedirectToAction("Index");
         }
 
-        // Hàm hỗ trợ tạo DropDownList danh sách Vai Trò đúng chuẩn CHECK Constraint của CSDL
         private SelectList SelectListVaiTro(string selectedValue = "BAN_HANG")
         {
             var dsVaiTro = new[]

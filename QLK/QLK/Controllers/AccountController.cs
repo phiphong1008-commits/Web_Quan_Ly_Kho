@@ -1,22 +1,23 @@
-﻿using QLK.Models; // Namespace chứa DoAn.edmx và AccountViewModels.cs
+﻿using QLK.Models;
 using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using TKELog.Models.ViewModels;
+// ĐÃ XÓA: using TKELog.Models.ViewModels;
 
 namespace QLK.Controllers
 {
     public class AccountController : Controller
     {
-        // Khởi tạo DbContext từ DoAn.edmx (DoAnEntities hoặc DO_AN_QLKEntities)
         private DO_AN_QLKEntities db = new DO_AN_QLKEntities();
 
         // GET: Account/Login
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
+            // Nếu đã đăng nhập rồi thì chuyển thẳng về trang Home
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToLocal(returnUrl);
@@ -35,25 +36,42 @@ namespace QLK.Controllers
                 return View(model);
             }
 
-            // Tìm người dùng trong DB theo ten_dang_nhap
             var user = db.nguoi_dung.FirstOrDefault(u => u.ten_dang_nhap == model.TenDangNhap);
 
-            // Xác thực mật khẩu mã hóa BCrypt
             if (user == null || !BCrypt.Net.BCrypt.Verify(model.MatKhau, user.mat_khau_ma_hoa))
             {
                 ModelState.AddModelError("", "Tên đăng nhập hoặc mật khẩu không chính xác.");
                 return View(model);
             }
 
-            // Kiểm tra trạng thái tài khoản
             if (user.trang_thai_hoat_dong == false)
             {
-                ModelState.AddModelError("", "Tài khoản của bạn đã bị khóa.");
+                ModelState.AddModelError("", "Tài khoản bị khóa.");
                 return View(model);
             }
 
-            // Cấu hình Cookie Đăng nhập FormsAuthentication & Session
-            FormsAuthentication.SetAuthCookie(user.ten_dang_nhap, model.GhiNho);
+            // TẠO TICKET GHI NHỚ ĐĂNG NHẬP CHUẨN (Nhúng Vai Trò vào Cookie)
+            // Cấu trúc userData: "MaNguoiDung|HoTen|VaiTro"
+            string userData = $"{user.ma_nguoi_dung}|{user.ho_ten}|{user.vai_tro}";
+
+            var authTicket = new FormsAuthenticationTicket(
+                1,                                  // Version
+                user.ten_dang_nhap,                 // Tên đăng nhập
+                DateTime.Now,                       // Thời gian tạo
+                DateTime.Now.AddHours(8),           // Thời gian hết hạn (8 tiếng)
+                model.GhiNho,                       // Có ghi nhớ không? (Remember Me)
+                userData                            // Dữ liệu nhúng kèm
+            );
+
+            string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+            var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                HttpOnly = true,
+                Expires = model.GhiNho ? authTicket.Expiration : DateTime.MinValue // Nếu Remember Me = true thì set hạn cho Cookie
+            };
+            Response.Cookies.Add(authCookie);
+
+            // Đồng thời set Session dùng tạm cho phiên hiện tại
             Session["MaNguoiDung"] = user.ma_nguoi_dung;
             Session["HoTen"] = user.ho_ten;
             Session["VaiTro"] = user.vai_tro;
@@ -61,66 +79,14 @@ namespace QLK.Controllers
             return RedirectToLocal(returnUrl);
         }
 
-        // GET: Account/Register
-        [HttpGet]
-        public ActionResult Register()
-        {
-            return View();
-        }
-
-        // POST: Account/Register
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // Kiểm tra tên đăng nhập tồn tại
-            if (db.nguoi_dung.Any(u => u.ten_dang_nhap == model.TenDangNhap))
-            {
-                ModelState.AddModelError("TenDangNhap", "Tên đăng nhập này đã được sử dụng.");
-                return View(model);
-            }
-
-            // Khởi tạo đối tượng Entity nguoi_dung
-            var newUser = new nguoi_dung
-            {
-                ten_dang_nhap = model.TenDangNhap,
-                mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(model.MatKhau),
-                ho_ten = model.HoTen,
-                vai_tro = string.IsNullOrEmpty(model.VaiTro) ? "BAN_HANG" : model.VaiTro,
-                trang_thai_hoat_dong = true,
-                ngay_tao = DateTime.Now,
-                ngay_cap_nhat = DateTime.Now
-            };
-
-            db.nguoi_dung.Add(newUser);
-            db.SaveChanges();
-
-            TempData["SuccessMessage"] = "Đăng ký tài khoản thành công! Vui lòng đăng nhập.";
-            return RedirectToAction("Login");
-        }
-
-        // POST: Account/Logout
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            Session.Clear();
-            Session.Abandon();
-            return RedirectToAction("Login", "Account");
-        }
-
+        // Hàm hỗ trợ điều hướng an toàn
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
+            // Mặc định chuyển hướng sang HomeController, Action Index (Trang chủ / Dashboard)
             return RedirectToAction("Index", "Home");
         }
 
