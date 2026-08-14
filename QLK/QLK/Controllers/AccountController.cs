@@ -89,7 +89,24 @@ namespace QLK.Controllers
             // Mặc định chuyển hướng sang HomeController, Action Index (Trang chủ / Dashboard)
             return RedirectToAction("Index", "Home");
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Logout()
+        {
+            // Xóa cookie xác thực
+            FormsAuthentication.SignOut();
+            // Xóa session hiện tại
+            Session.Clear();
+            Session.Abandon();
 
+            return RedirectToAction("Login", "Account");
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ForgotPassword()
+        {
+            return View(); // Bạn cần tạo thêm 1 file ForgotPassword.cshtml trong thư mục Views/Account
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
