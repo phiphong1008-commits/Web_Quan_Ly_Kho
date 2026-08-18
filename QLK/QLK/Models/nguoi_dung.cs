@@ -32,6 +32,8 @@ namespace QLK.Models
         public Nullable<bool> trang_thai_hoat_dong { get; set; }
         public Nullable<System.DateTime> ngay_tao { get; set; }
         public Nullable<System.DateTime> ngay_cap_nhat { get; set; }
+        public string email { get; set; }
+        public string so_dien_thoai { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bao_cao> bao_cao { get; set; }

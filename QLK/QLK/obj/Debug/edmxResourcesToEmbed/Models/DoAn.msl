@@ -158,6 +158,8 @@
     <EntitySetMapping Name="nguoi_dung">
       <EntityTypeMapping TypeName="DO_AN_QLKModel.nguoi_dung">
         <MappingFragment StoreEntitySet="nguoi_dung">
+          <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="ma_nguoi_dung" ColumnName="ma_nguoi_dung" />
           <ScalarProperty Name="ten_dang_nhap" ColumnName="ten_dang_nhap" />
           <ScalarProperty Name="mat_khau_ma_hoa" ColumnName="mat_khau_ma_hoa" />

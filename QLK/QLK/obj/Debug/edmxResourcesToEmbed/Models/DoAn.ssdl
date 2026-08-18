@@ -179,6 +179,8 @@
     <Property Name="trang_thai_hoat_dong" Type="bit" />
     <Property Name="ngay_tao" Type="datetime" />
     <Property Name="ngay_cap_nhat" Type="datetime" />
+    <Property Name="email" Type="varchar" MaxLength="255" />
+    <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="nha_cung_cap">
     <Key>

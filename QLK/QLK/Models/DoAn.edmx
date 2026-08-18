@@ -184,6 +184,8 @@
           <Property Name="trang_thai_hoat_dong" Type="bit" />
           <Property Name="ngay_tao" Type="datetime" />
           <Property Name="ngay_cap_nhat" Type="datetime" />
+          <Property Name="email" Type="varchar" MaxLength="255" />
+          <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="nha_cung_cap">
           <Key>
@@ -919,6 +921,8 @@
           <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_pkk_nguoidung" FromRole="nguoi_dung" ToRole="phieu_kiem_ke" />
           <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_phieunhap_nguoidung" FromRole="nguoi_dung" ToRole="phieu_nhap_kho" />
           <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="nguoi_dung" ToRole="chuyen_giao_hang" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="nha_cung_cap">
           <Key>
@@ -1680,6 +1684,8 @@
           <EntitySetMapping Name="nguoi_dung">
             <EntityTypeMapping TypeName="DO_AN_QLKModel.nguoi_dung">
               <MappingFragment StoreEntitySet="nguoi_dung">
+                <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="ma_nguoi_dung" ColumnName="ma_nguoi_dung" />
                 <ScalarProperty Name="ten_dang_nhap" ColumnName="ten_dang_nhap" />
                 <ScalarProperty Name="mat_khau_ma_hoa" ColumnName="mat_khau_ma_hoa" />

@@ -52,4 +52,15 @@ namespace TKELog.Models.ViewModels
         public bool TrangThaiHoatDong { get; set; }
         public string MatKhauMoi { get; set; } // Nếu điền thì đổi, bỏ trống thì giữ nguyên
     }
+    public class ForgotPasswordViewModel
+    {
+        public string Email { get; set; }
+    }
+
+    public class ChangePasswordViewModel
+    {
+        public string MatKhauCu { get; set; }
+        public string MatKhauMoi { get; set; }
+        public string XacNhanMatKhau { get; set; }
+    }
 }

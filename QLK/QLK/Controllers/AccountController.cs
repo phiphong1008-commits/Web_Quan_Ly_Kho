@@ -105,15 +105,98 @@ namespace QLK.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
-            return View(); // Bạn cần tạo thêm 1 file ForgotPassword.cshtml trong thư mục Views/Account
+            return View();
         }
-        protected override void Dispose(bool disposing)
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (disposing)
+            if (!ModelState.IsValid)
             {
-                db.Dispose();
+                return View(model);
             }
-            base.Dispose(disposing);
+
+            // Tìm user theo Email
+            var user = db.nguoi_dung.FirstOrDefault(u => u.email == model.Email);
+
+            if (user != null && user.trang_thai_hoat_dong == true)
+            {
+                // 1. Sinh mật khẩu tạm thời ngẫu nhiên (Ví dụ: 8 ký tự)
+                string matKhauTam = Guid.NewGuid().ToString().Substring(0, 8);
+
+                // 2. Mã hóa BCrypt và cập nhật vào DB
+                user.mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(matKhauTam);
+                user.ngay_cap_nhat = DateTime.Now;
+                db.SaveChanges();
+
+                // 3. Gửi Email chứa mật khẩu tạm (MOCK - Tích hợp SMTP thực tế sau)
+                // SendEmail(user.email, "Phục hồi mật khẩu TKELog", $"Mật khẩu mới của bạn là: {matKhauTam}");
+
+                TempData["SuccessMessage"] = "Mật khẩu mới đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư.";
+                return RedirectToAction("Login");
+            }
+
+            // Dù không tìm thấy email, vẫn báo chung chung để tránh bị hacker dò quét email trong hệ thống
+            TempData["SuccessMessage"] = "Nếu email hợp lệ, một hướng dẫn phục hồi đã được gửi đi.";
+            return RedirectToAction("Login");
+        }
+
+        // ==========================================
+        // TÍNH NĂNG 2: ĐỔI MẬT KHẨU
+        // Yêu cầu: Phải đăng nhập mới được đổi
+        // ==========================================
+        [HttpGet]
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if (model.MatKhauMoi != model.XacNhanMatKhau)
+            {
+                ModelState.AddModelError("", "Mật khẩu xác nhận không khớp.");
+                return View(model);
+            }
+
+            // Lấy Mã người dùng từ Session đã lưu lúc Login
+            int maNguoiDung = (int)Session["MaNguoiDung"];
+            var user = db.nguoi_dung.Find(maNguoiDung);
+
+            if (user == null)
+            {
+                return RedirectToAction("Login");
+            }
+
+            // Kiểm tra mật khẩu cũ
+            if (!BCrypt.Net.BCrypt.Verify(model.MatKhauCu, user.mat_khau_ma_hoa))
+            {
+                ModelState.AddModelError("", "Mật khẩu cũ không chính xác.");
+                return View(model);
+            }
+
+            // Mã hóa mật khẩu mới và lưu DB
+            user.mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(model.MatKhauMoi);
+            user.ngay_cap_nhat = DateTime.Now;
+            db.SaveChanges();
+
+            // Đổi mật khẩu thành công -> Xóa phiên đăng nhập bắt đăng nhập lại để đảm bảo an toàn
+            FormsAuthentication.SignOut();
+            Session.Clear();
+
+            TempData["SuccessMessage"] = "Đổi mật khẩu thành công. Vui lòng đăng nhập lại.";
+            return RedirectToAction("Login");
         }
     }
 }

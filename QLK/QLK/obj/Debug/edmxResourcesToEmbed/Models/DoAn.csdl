@@ -180,6 +180,8 @@
     <NavigationProperty Name="phieu_kiem_ke" Relationship="Self.FK_pkk_nguoidung" FromRole="nguoi_dung" ToRole="phieu_kiem_ke" />
     <NavigationProperty Name="phieu_nhap_kho" Relationship="Self.FK_phieunhap_nguoidung" FromRole="nguoi_dung" ToRole="phieu_nhap_kho" />
     <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="nguoi_dung" ToRole="chuyen_giao_hang" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="nha_cung_cap">
     <Key>
