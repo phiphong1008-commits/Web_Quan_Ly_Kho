@@ -1,11 +1,15 @@
 ﻿using QLK.Models;
+using QLK.Models.ViewModels;
 using System;
+using System.Configuration;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using TKELog.Models.ViewModels;
-// ĐÃ XÓA: using TKELog.Models.ViewModels;
+
+// ĐÃ XÓA: using QLK.Models.ViewModels;
 
 namespace QLK.Controllers
 {
@@ -118,29 +122,201 @@ namespace QLK.Controllers
                 return View(model);
             }
 
-            // Tìm user theo Email
-            var user = db.nguoi_dung.FirstOrDefault(u => u.email == model.Email);
+            // Kiểm tra tính hợp lệ của Tên đăng nhập và Email
+            var user = db.nguoi_dung.FirstOrDefault(u => u.ten_dang_nhap == model.TenDangNhap && u.email == model.Email);
 
             if (user != null && user.trang_thai_hoat_dong == true)
             {
-                // 1. Sinh mật khẩu tạm thời ngẫu nhiên (Ví dụ: 8 ký tự)
-                string matKhauTam = Guid.NewGuid().ToString().Substring(0, 8);
+                Random random = new Random();
+                string otpCode = random.Next(100000, 999999).ToString();
 
-                // 2. Mã hóa BCrypt và cập nhật vào DB
-                user.mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(matKhauTam);
-                user.ngay_cap_nhat = DateTime.Now;
-                db.SaveChanges();
+                Session["ResetOTP"] = otpCode;
+                Session["ResetUserID"] = user.ma_nguoi_dung;
+                Session["OTPExpiry"] = DateTime.Now.AddMinutes(5);
 
-                // 3. Gửi Email chứa mật khẩu tạm (MOCK - Tích hợp SMTP thực tế sau)
-                // SendEmail(user.email, "Phục hồi mật khẩu TKELog", $"Mật khẩu mới của bạn là: {matKhauTam}");
+                // SỬA: kiểm tra kết quả gửi mail, không còn giả định luôn thành công
+                bool guiThanhCong = SendEmailOTP(user.email, otpCode);
+                if (!guiThanhCong)
+                {
+                    ModelState.AddModelError("", "Không gửi được email OTP. Vui lòng thử lại sau hoặc liên hệ quản trị viên.");
+                    return View(model);
+                }
 
-                TempData["SuccessMessage"] = "Mật khẩu mới đã được gửi đến email của bạn. Vui lòng kiểm tra hộp thư.";
-                return RedirectToAction("Login");
+                return RedirectToAction("VerifyOTP");
             }
 
-            // Dù không tìm thấy email, vẫn báo chung chung để tránh bị hacker dò quét email trong hệ thống
-            TempData["SuccessMessage"] = "Nếu email hợp lệ, một hướng dẫn phục hồi đã được gửi đi.";
-            return RedirectToAction("Login");
+            ModelState.AddModelError("", "Tên đăng nhập hoặc Email không chính xác/không tồn tại.");
+            return View(model);
+        }
+
+        // ==========================================
+        // BƯỚC 2: XÁC THỰC MÃ OTP
+        // ==========================================
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult VerifyOTP()
+        {
+            if (Session["ResetOTP"] == null) return RedirectToAction("Login");
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerifyOTP(string otpCode)
+        {
+            if (Session["ResetOTP"] != null && Session["OTPExpiry"] != null)
+            {
+                DateTime expiry = (DateTime)Session["OTPExpiry"];
+                if (DateTime.Now > expiry)
+                {
+                    ModelState.AddModelError("", "Mã OTP đã hết hạn. Vui lòng yêu cầu lại.");
+                    return View();
+                }
+
+                if (Session["ResetOTP"].ToString() == otpCode)
+                {
+                    // OTP hợp lệ, đánh dấu session đã xác thực để cho phép đổi mật khẩu
+                    Session["OTPVerified"] = true;
+                    return RedirectToAction("ResetPassword");
+                }
+            }
+
+            ModelState.AddModelError("", "Mã xác nhận không hợp lệ.");
+            return View();
+        }
+
+        // ==========================================
+        // BƯỚC 3: ĐẶT LẠI MẬT KHẨU MỚI
+        // ==========================================
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPassword()
+        {
+            // Chỉ cho phép truy cập khi đã qua bước VerifyOTP
+            if (Session["OTPVerified"] == null || (bool)Session["OTPVerified"] == false)
+            {
+                return RedirectToAction("Login");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            // 1. Kiểm tra tính hợp lệ của Model nhập vào
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // 2. Chặn việc truy cập thẳng vào link khi chưa qua bước OTP
+            if (Session["ResetUserID"] == null || Session["OTPVerified"] == null || (bool)Session["OTPVerified"] == false)
+            {
+                TempData["ErrorMessage"] = "Phiên làm việc đã hết hạn hoặc không hợp lệ. Vui lòng thao tác lại từ đầu.";
+                return RedirectToAction("ForgotPassword", "Account");
+            }
+
+            try
+            {
+                int userId = (int)Session["ResetUserID"];
+
+                // 3. Dùng Find() để lấy và để Entity Framework tự động Tracking sự thay đổi
+                var user = db.nguoi_dung.Find(userId);
+
+                if (user != null)
+                {
+                    // 4. Chỉ gán thông tin mới, KHÔNG dùng lệnh db.Entry().State = Modified
+                    user.mat_khau_ma_hoa = BCrypt.Net.BCrypt.HashPassword(model.MatKhauMoi);
+                    user.ngay_cap_nhat = DateTime.Now;
+
+                    // 5. Lưu vào CSDL
+                    db.SaveChanges();
+
+                    // 6. Xóa dọn dẹp toàn bộ Session của luồng quên mật khẩu
+                    Session.Remove("ResetOTP");
+                    Session.Remove("ResetUserID");
+                    Session.Remove("OTPExpiry");
+                    Session.Remove("OTPVerified");
+
+                    // 7. Chuyển hướng về trang Đăng nhập thành công
+                    TempData["SuccessMessage"] = "Khôi phục mật khẩu thành công. Vui lòng đăng nhập lại bằng mật khẩu mới.";
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Không tìm thấy dữ liệu người dùng trong hệ thống.");
+                    return View(model);
+                }
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException ex)
+            {
+                // 8. BẮT LỖI SÂU: Hiển thị đích danh cột CSDL nào ngăn cản việc lưu
+                foreach (var validationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        ModelState.AddModelError("", $"Lỗi ràng buộc CSDL: {validationError.PropertyName} - {validationError.ErrorMessage}");
+                    }
+                }
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                // Bắt các lỗi chung (như rớt kết nối DB)
+                ModelState.AddModelError("", "Lỗi hệ thống khi lưu: " + ex.Message);
+                return View(model);
+            }
+        }
+
+        // Hàm hỗ trợ gửi mail (Cần điền thông tin SMTP thực tế của hệ thống)
+        private bool SendEmailOTP(string toEmail, string otpCode)
+        {
+            try
+            {
+                // Lấy từ Web.config thay vì hardcode - tránh lộ mật khẩu khi đẩy code lên Git
+                string smtpEmail = ConfigurationManager.AppSettings["SmtpEmail"];
+                string smtpAppPassword = ConfigurationManager.AppSettings["SmtpAppPassword"];
+
+                // fromAddress PHẢI là đúng Gmail đã tạo App Password ở bước trên -
+                // không được để địa chỉ khác (ví dụ no-reply@tkelog.com) vì Gmail
+                // sẽ từ chối xác thực SMTP nếu From không khớp tài khoản đăng nhập.
+                var fromAddress = new MailAddress(smtpEmail, "QLK - Hệ thống quản lý kho");
+                var toAddress = new MailAddress(toEmail);
+
+                string subject = "Mã xác nhận khôi phục mật khẩu";
+                string body = $"Mã OTP của bạn là: {otpCode}. Mã có hiệu lực trong 5 phút. Vui lòng không chia sẻ cho bất kỳ ai.";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(smtpEmail, smtpAppPassword)
+                };
+
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
+                return true; // gửi thành công
+            }
+            catch (Exception ex)
+            {
+                // KHÔNG được để trống catch như bản cũ - ít nhất ghi ra log/Trace để
+                // biết chính xác vì sao gửi thất bại lúc debug (sai mật khẩu? sai host?...)
+                System.Diagnostics.Trace.TraceError("Lỗi gửi email OTP: " + ex.Message);
+                return false; // gửi thất bại
+            }
         }
 
         // ==========================================
