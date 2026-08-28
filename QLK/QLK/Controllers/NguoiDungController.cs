@@ -151,7 +151,62 @@ namespace QLK.Controllers
 
             return Json(new { success = true, data = data }, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult Profile()
+        {
+            // Kiểm tra phiên đăng nhập
+            if (Session["MaNguoiDung"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
+            int maNguoiDung = (int)Session["MaNguoiDung"];
+            var user = db.nguoi_dung.Find(maNguoiDung);
+
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Trả model user về cho file Profile.cshtml anh đã tạo
+            return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateProfile(nguoi_dung model)
+        {
+            try
+            {
+                // Truy xuất bản ghi gốc từ Database để Entity Framework tự động theo dõi (Tracking)
+                var userInDb = db.nguoi_dung.Find(model.ma_nguoi_dung);
+
+                if (userInDb == null)
+                {
+                    return HttpNotFound("Không tìm thấy dữ liệu người dùng.");
+                }
+
+                // Chỉ ghi đè các trường thông tin liên lạc và địa chỉ được phép cập nhật
+                userInDb.so_dien_thoai = model.so_dien_thoai;
+                userInDb.email = model.email;
+                userInDb.ma_tinh_thanh = model.ma_tinh_thanh;
+                userInDb.ma_quan_huyen = model.ma_quan_huyen;
+                userInDb.ma_phuong_xa = model.ma_phuong_xa;
+                userInDb.dia_chi_chi_tiet = model.dia_chi_chi_tiet;
+                userInDb.ngay_cap_nhat = DateTime.Now;
+
+                // Lưu thay đổi xuống cơ sở dữ liệu
+                db.SaveChanges();
+
+                // Gắn cờ thông báo thành công và điều hướng thẳng về lại trang xem hồ sơ
+                TempData["SuccessMessage"] = "Cập nhật thông tin liên lạc thành công!";
+                return RedirectToAction("Profile");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Lỗi hệ thống khi cập nhật dữ liệu: " + ex.Message;
+                return RedirectToAction("Profile");
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

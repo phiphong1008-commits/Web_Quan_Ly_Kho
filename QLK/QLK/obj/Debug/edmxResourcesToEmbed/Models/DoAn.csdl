@@ -182,6 +182,11 @@
     <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="nguoi_dung" ToRole="chuyen_giao_hang" />
     <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="dia_chi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ma_tinh_thanh" Type="Int32" />
+    <Property Name="ma_quan_huyen" Type="Int32" />
+    <Property Name="ma_phuong_xa" Type="Int32" />
+    <Property Name="dia_chi_chi_tiet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="nha_cung_cap">
     <Key>

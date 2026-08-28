@@ -1,0 +1,204 @@
+﻿@model QLK.Models.nguoi_dung
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid py-4">
+    <!-- Tiêu đề trang -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h3 mb-0 text-gray-800"><i class="fa-solid fa-id-badge text-primary me-2"></i> Hồ sơ của tôi</h2>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i>@TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <!-- Khối 1: Thẻ thông tin cơ bản (Bên trái) -->
+        <div class="col-xl-4 col-lg-5 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-body text-center p-4">
+                    <!-- Ảnh đại diện tạo động từ tên -->
+                    <img src="https://ui-avatars.com/api/?name=@(Model.ho_ten)&background=2a5298&color=fff&size=128"
+                         alt="Avatar" class="rounded-circle img-fluid shadow-sm mb-3" style="width: 120px; height: 120px; border: 4px solid #fff;">
+
+                    <h5 class="fw-bold text-dark mb-1">@Model.ho_ten</h5>
+                    <p class="text-muted mb-3">
+                        <span class="badge bg-primary">@Model.vai_tro.Replace("_", " ")</span>
+                    </p>
+
+                    <ul class="list-group list-group-flush text-start">
+                        <li class="list-group-item px-0">
+                            <span class="fw-bold text-secondary w-50 d-inline-block"><i class="fa-solid fa-hashtag me-2"></i> Mã NV:</span>
+                            <span class="text-dark fw-medium">NV-@Model.ma_nguoi_dung.ToString("D4")</span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <span class="fw-bold text-secondary w-50 d-inline-block"><i class="fa-solid fa-user me-2"></i> Tài khoản:</span>
+                            <span class="text-dark">@Model.ten_dang_nhap</span>
+                        </li>
+                        <li class="list-group-item px-0">
+                            <span class="fw-bold text-secondary w-50 d-inline-block"><i class="fa-solid fa-calendar-plus me-2"></i> Ngày tạo:</span>
+                            <span class="text-dark">@(Model.ngay_tao?.ToString("dd/MM/yyyy") ?? "N/A")</span>
+                        </li>
+                        <li class="list-group-item px-0 border-bottom-0">
+                            <span class="fw-bold text-secondary w-50 d-inline-block"><i class="fa-solid fa-circle-check me-2"></i> Trạng thái:</span>
+                            @if (Model.trang_thai_hoat_dong == true)
+                            {
+                                <span class="badge bg-success">Đang hoạt động</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Bị khóa</span>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Khối 2: Biểu mẫu cập nhật thông tin liên lạc (Bên phải) -->
+        <div class="col-xl-8 col-lg-7 mb-4">
+            <div class="card shadow-sm border-0 h-100">
+                <div class="card-header bg-white border-bottom pt-3 pb-2">
+                    <h5 class="fw-bold text-primary mb-0">Chi tiết thông tin liên lạc</h5>
+                </div>
+                <div class="card-body p-4">
+
+                    @using (Html.BeginForm("UpdateProfile", "NguoiDung", FormMethod.Post, new { @class = "needs-validation" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <!-- Ẩn mã nhân viên để Controller biết update ai -->
+                        @Html.HiddenFor(m => m.ma_nguoi_dung)
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                                    @Html.TextBoxFor(m => m.so_dien_thoai, new { @class = "form-control", @required = "required", @placeholder = "090xxxxxxx" })
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-3 mt-md-0">
+                                <label class="form-label fw-bold">Địa chỉ Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                                    @Html.TextBoxFor(m => m.email, new { @class = "form-control", @type = "email", @placeholder = "email@domain.com" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Khu vực cập nhật địa chỉ hành chính 3 cấp -->
+                        <h6 class="fw-bold text-secondary border-bottom pb-2 mt-4 mb-3">Địa chỉ thường trú</h6>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-bold text-muted small">Tỉnh / Thành phố</label>
+                                <select id="ma_tinh_thanh" name="ma_tinh_thanh" class="form-select" data-selected="@Model.ma_tinh_thanh">
+                                    <option value="" selected disabled>-- Chọn Tỉnh / Thành phố --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label fw-bold text-muted small">Quận / Huyện</label>
+                                <select id="ma_quan_huyen" name="ma_quan_huyen" class="form-select" data-selected="@Model.ma_quan_huyen" disabled>
+                                    <option value="" selected disabled>-- Chọn Quận / Huyện --</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mt-3 mt-md-0">
+                                <label class="form-label fw-bold text-muted small">Phường / Xã</label>
+                                <select id="ma_phuong_xa" name="ma_phuong_xa" class="form-select" data-selected="@Model.ma_phuong_xa" disabled>
+                                    <option value="" selected disabled>-- Chọn Phường / Xã --</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-muted small">Số nhà, Tên đường</label>
+                            @Html.TextBoxFor(m => m.dia_chi_chi_tiet, new { @class = "form-control", @placeholder = "Ví dụ: 939 Phạm Văn Bạch..." })
+                        </div>
+
+                        <div class="text-end border-top pt-3">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="fa-solid fa-floppy-disk me-2"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Logic gọi API lấy danh sách hành chính
+        const host = "https://provinces.open-api.vn/api/";
+
+        const cboTinh = document.getElementById('ma_tinh_thanh');
+        const cboHuyen = document.getElementById('ma_quan_huyen');
+        const cboXa = document.getElementById('ma_phuong_xa');
+
+        const selectedTinh = cboTinh.getAttribute('data-selected');
+        const selectedHuyen = cboHuyen.getAttribute('data-selected');
+        const selectedXa = cboXa.getAttribute('data-selected');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch(host + "?depth=1")
+                .then(response => response.json())
+                .then(data => {
+                    let html = '<option value="" disabled>-- Chọn Tỉnh / Thành phố --</option>';
+                    data.forEach(item => {
+                        html += `<option value="${item.code}" ${item.code == selectedTinh ? 'selected' : ''}>${item.name}</option>`;
+                    });
+                    cboTinh.innerHTML = html;
+
+                    if(selectedTinh) {
+                        cboTinh.dispatchEvent(new Event('change'));
+                    }
+                });
+        });
+
+        cboTinh.addEventListener('change', function() {
+            const provinceCode = this.value;
+            cboHuyen.innerHTML = '<option value="" disabled>-- Đang tải... --</option>';
+            cboHuyen.disabled = true;
+            cboXa.innerHTML = '<option value="" selected disabled>-- Chọn Phường / Xã --</option>';
+            cboXa.disabled = true;
+
+            fetch(host + "p/" + provinceCode + "?depth=2")
+                .then(response => response.json())
+                .then(data => {
+                    let html = '<option value="" disabled>-- Chọn Quận / Huyện --</option>';
+                    data.districts.forEach(item => {
+                        html += `<option value="${item.code}" ${item.code == selectedHuyen ? 'selected' : ''}>${item.name}</option>`;
+                    });
+                    cboHuyen.innerHTML = html;
+                    cboHuyen.disabled = false;
+
+                    if(selectedHuyen && this.value == selectedTinh) {
+                         cboHuyen.dispatchEvent(new Event('change'));
+                    }
+                });
+        });
+
+        cboHuyen.addEventListener('change', function() {
+            const districtCode = this.value;
+            cboXa.innerHTML = '<option value="" disabled>-- Đang tải... --</option>';
+            cboXa.disabled = true;
+
+            fetch(host + "d/" + districtCode + "?depth=2")
+                .then(response => response.json())
+                .then(data => {
+                    let html = '<option value="" disabled>-- Chọn Phường / Xã --</option>';
+                    data.wards.forEach(item => {
+                        html += `<option value="${item.code}" ${item.code == selectedXa ? 'selected' : ''}>${item.name}</option>`;
+                    });
+                    cboXa.innerHTML = html;
+                    cboXa.disabled = false;
+                });
+        });
+    </script>
+}

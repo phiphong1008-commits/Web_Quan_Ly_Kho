@@ -186,6 +186,11 @@
           <Property Name="ngay_cap_nhat" Type="datetime" />
           <Property Name="email" Type="varchar" MaxLength="255" />
           <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
+          <Property Name="dia_chi" Type="nvarchar" MaxLength="255" />
+          <Property Name="ma_tinh_thanh" Type="int" />
+          <Property Name="ma_quan_huyen" Type="int" />
+          <Property Name="ma_phuong_xa" Type="int" />
+          <Property Name="dia_chi_chi_tiet" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="nha_cung_cap">
           <Key>
@@ -923,6 +928,11 @@
           <NavigationProperty Name="chuyen_giao_hang" Relationship="DO_AN_QLKModel.FK_chuyengiaohang_taixe" FromRole="nguoi_dung" ToRole="chuyen_giao_hang" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="so_dien_thoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dia_chi" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ma_tinh_thanh" Type="Int32" />
+          <Property Name="ma_quan_huyen" Type="Int32" />
+          <Property Name="ma_phuong_xa" Type="Int32" />
+          <Property Name="dia_chi_chi_tiet" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="nha_cung_cap">
           <Key>
@@ -1684,6 +1694,11 @@
           <EntitySetMapping Name="nguoi_dung">
             <EntityTypeMapping TypeName="DO_AN_QLKModel.nguoi_dung">
               <MappingFragment StoreEntitySet="nguoi_dung">
+                <ScalarProperty Name="dia_chi_chi_tiet" ColumnName="dia_chi_chi_tiet" />
+                <ScalarProperty Name="ma_phuong_xa" ColumnName="ma_phuong_xa" />
+                <ScalarProperty Name="ma_quan_huyen" ColumnName="ma_quan_huyen" />
+                <ScalarProperty Name="ma_tinh_thanh" ColumnName="ma_tinh_thanh" />
+                <ScalarProperty Name="dia_chi" ColumnName="dia_chi" />
                 <ScalarProperty Name="so_dien_thoai" ColumnName="so_dien_thoai" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="ma_nguoi_dung" ColumnName="ma_nguoi_dung" />

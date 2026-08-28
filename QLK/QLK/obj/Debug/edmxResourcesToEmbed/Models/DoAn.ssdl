@@ -181,6 +181,11 @@
     <Property Name="ngay_cap_nhat" Type="datetime" />
     <Property Name="email" Type="varchar" MaxLength="255" />
     <Property Name="so_dien_thoai" Type="varchar" MaxLength="20" />
+    <Property Name="dia_chi" Type="nvarchar" MaxLength="255" />
+    <Property Name="ma_tinh_thanh" Type="int" />
+    <Property Name="ma_quan_huyen" Type="int" />
+    <Property Name="ma_phuong_xa" Type="int" />
+    <Property Name="dia_chi_chi_tiet" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="nha_cung_cap">
     <Key>

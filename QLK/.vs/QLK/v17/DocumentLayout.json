@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|c:\\hoctap\\do_an_quanlykho\\web_quan_ly_kho\\qlk\\qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\nguoidung\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\nguoidung\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\nguoidung\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\nguoidung\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -35,24 +63,12 @@
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\models\\doan.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -75,24 +91,12 @@
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\donhang\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\nguoidung\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\nguoidung\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\basecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\controllers\\donhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|solutionrelative:qlk\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A015A65-E194-4036-96EA-6A9EF07D67F3}|QLK\\QLK.csproj|C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\qlk\\views\\donhang\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -118,11 +122,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 19,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\NguoiDung\\Profile.cshtml",
+              "RelativeDocumentMoniker": "QLK\\Views\\NguoiDung\\Profile.cshtml",
+              "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\NguoiDung\\Profile.cshtml",
+              "RelativeToolTip": "QLK\\Views\\NguoiDung\\Profile.cshtml",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAFYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-08-28T03:36:14.349Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "VerifyOTP.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Account\\VerifyOTP.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Account\\VerifyOTP.cshtml",
@@ -134,7 +150,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ResetPassword.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Account\\ResetPassword.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Account\\ResetPassword.cshtml",
@@ -146,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 10,
               "Title": "ChangePassword.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Account\\ChangePassword.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Account\\ChangePassword.cshtml",
@@ -158,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Account\\ForgotPassword.cshtml",
@@ -170,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 13,
               "Title": "AccountViewModels.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\AccountViewModels.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\AccountViewModels.cs",
@@ -182,19 +198,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 2,
               "Title": "NguoiDungController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\NguoiDungController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\NguoiDungController.cs",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\NguoiDungController.cs",
               "RelativeToolTip": "QLK\\Controllers\\NguoiDungController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJoAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAALsAAAAAAAAAAADwv9AAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-06T03:08:06.06Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 8,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\AccountController.cs",
@@ -206,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 7,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\HomeController.cs",
@@ -218,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Account\\Login.cshtml",
@@ -230,7 +246,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "DoAn.edmx [Diagram1]",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx",
               "RelativeDocumentMoniker": "QLK\\Models\\DoAn.edmx",
@@ -241,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "ChiChoPhepAttribute.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\ChiChoPhepAttribute.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\ChiChoPhepAttribute.cs",
@@ -253,7 +269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Properties\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "QLK\\Properties\\AssemblyInfo.cs",
@@ -265,7 +281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "DoAn.tt",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.tt",
               "RelativeDocumentMoniker": "QLK\\Models\\DoAn.tt",
@@ -277,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "Create.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Create.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Create.cshtml",
@@ -289,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "BaseController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\BaseController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\BaseController.cs",
@@ -301,31 +317,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\NguoiDung\\Index.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\NguoiDung\\Index.cshtml",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\NguoiDung\\Index.cshtml",
               "RelativeToolTip": "QLK\\Views\\NguoiDung\\Index.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADcAAAB2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAB2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-08-07T03:47:05.019Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 6,
               "Title": "DonHangController.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
               "RelativeDocumentMoniker": "QLK\\Controllers\\DonHangController.cs",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Controllers\\DonHangController.cs",
               "RelativeToolTip": "QLK\\Controllers\\DonHangController.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAYwAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAowAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T04:43:26.634Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "QLK\\App_Start\\RouteConfig.cs",
@@ -337,7 +353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\DonHang\\Index.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\DonHang\\Index.cshtml",
@@ -349,32 +365,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "QLK\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAIIAAAAAAAAAAAAAAIcAAABhAAAAAAAAAA==",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAAIIAAABnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-03T04:40:07.511Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-03T04:40:07.511Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "QLK\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "QLK\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAAACAAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-08-03T04:40:53.84Z"
+              "WhenOpened": "2026-08-03T04:40:53.84Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "QuickOrderInputModel.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\QuickOrderInputModel.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\QuickOrderInputModel.cs",
@@ -386,7 +402,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Web.config",
               "RelativeDocumentMoniker": "QLK\\Web.config",
@@ -399,7 +415,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "nguoi_dung.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\nguoi_dung.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\nguoi_dung.cs",
@@ -411,7 +427,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "Web.config",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Views\\Web.config",
               "RelativeDocumentMoniker": "QLK\\Views\\Web.config",
@@ -423,7 +439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "DoAn.edmx.diagram",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.edmx.diagram",
               "RelativeDocumentMoniker": "QLK\\Models\\DoAn.edmx.diagram",
@@ -435,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 14,
               "Title": "DoAn.Context.cs",
               "DocumentMoniker": "C:\\HOCTAP\\DO_AN_QUANLYKHO\\Web_Quan_Ly_Kho\\QLK\\QLK\\Models\\DoAn.Context.cs",
               "RelativeDocumentMoniker": "QLK\\Models\\DoAn.Context.cs",

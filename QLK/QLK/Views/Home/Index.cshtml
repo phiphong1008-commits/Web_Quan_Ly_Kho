@@ -16,10 +16,7 @@
             <span class="navbar-brand mb-0 h1">Hệ Thống QLK WMS/TMS</span>
             <div class="d-flex">
                 <span class="me-3 mt-2">Xin chào: <strong>@ViewBag.HoTen</strong> (Vai trò: @ViewBag.VaiTro)</span>
-                <form action="/Account/Logout" method="post">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger btn-sm">Đăng xuất</button>
-                </form>
+                
             </div>
         </div>
     </nav>
